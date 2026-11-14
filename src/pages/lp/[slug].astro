@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JukeboxRoom from '../../components/JukeboxRoom.astro';
+import { getAllAlbums, type Album } from '../../lib/catalog';
+
+export function getStaticPaths() {
+  const albums = getAllAlbums();
+  return albums.map((album) => ({
+    params: { slug: album.slug },
+    props: { album, allAlbums: albums },
+  }));
+}
+
+interface Props {
+  album: Album;
+  allAlbums: Album[];
+}
+
+const { album, allAlbums } = Astro.props;
+---
+
+<Layout
+  title={`${album.title} — Jukebox Listening Room`}
+  description={`${album.subtitle} · ${album.genre}`}
+>
+  <JukeboxRoom album={album} allAlbums={allAlbums} />
+</Layout>

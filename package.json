@@ -1,0 +1,20 @@
+{
+  "name": "jukebox",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Jukebox — Listening Room & Acervo Interativo de LPs em Vinil",
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "start": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "node scripts/build-album-json.mjs && ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "album:json": "node scripts/build-album-json.mjs",
+    "album:cover": "./scripts/prepare-cover.sh",
+    "album:booklet": "./scripts/build-booklet.sh",
+    "album:master": "./scripts/master-audio.sh",
+    "album:video": "./scripts/render-video.sh"
+  },
+  "dependencies": {
+    "astro": "^5.1.0"
+  }
+}

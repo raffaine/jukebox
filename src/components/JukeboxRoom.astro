@@ -1,0 +1,2658 @@
+---
+import type { Album } from '../lib/catalog';
+
+interface Props {
+  album: Album;
+  allAlbums: Album[];
+}
+
+const { album, allAlbums } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (p: string) => (p.startsWith('http') ? p : `${baseUrl}${p.startsWith('/') ? p : `/${p}`}`);
+
+const normalizedAlbum = {
+  ...album,
+  coverUrl: withBase(album.coverUrl),
+  bookletPdfUrl: withBase(album.bookletPdfUrl),
+  tracks: album.tracks.map((t) => ({
+    ...t,
+    audioUrl: withBase(t.audioUrl),
+  })),
+};
+const initialTrack = normalizedAlbum.tracks[0];
+---
+
+<div class="jukebox-shell" data-album-id={album.id}>
+  <!-- Top Bar / Navigation -->
+  <header class="topbar">
+    <div class="brand-group">
+      <a href={withBase('/')} class="brand-logo" title="Jukebox — Sala de Audição">
+        <span class="vinyl-icon" aria-hidden="true">
+          <span class="vinyl-dot"></span>
+        </span>
+        <div>
+          <span class="brand-title">JUKEBOX</span>
+          <span class="brand-sub">SALA DE AUDIÇÃO · 33 ⅓ RPM</span>
+        </div>
+      </a>
+
+      <div class="divider-v"></div>
+
+      <button type="button" class="crate-trigger" id="btn-open-crate" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h10" />
+        </svg>
+        <span>Estante de LPs ({allAlbums.length})</span>
+        <span class="current-lp-pill">{album.title}</span>
+      </button>
+    </div>
+
+    <div class="topbar-actions">
+      <button type="button" class="action-chip" id="btn-crackle-toggle" title="Ativar/Desativar chiado analógico de agulha no vinil">
+        <span class="led-indicator" id="crackle-led"></span>
+        <span>Agulha no Sulco</span>
+      </button>
+
+      <a
+        href={normalizedAlbum.bookletPdfUrl}
+        target="_blank"
+        rel="noopener"
+        class="action-chip action-chip-gold"
+        title="Abrir encarte diagramado em PDF (Estética Vinil Anos 70)"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="12" y1="18" x2="12" y2="12"></line>
+          <polyline points="9 15 12 18 15 15"></polyline>
+        </svg>
+        <span>Encarte PDF (Anos 70)</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Multi-LP Crate Drawer (Estante de Discos) -->
+  <section class="crate-drawer" id="crate-drawer" hidden>
+    <div class="crate-inner">
+      <div class="crate-header">
+        <div>
+          <h2>Estante de Vinis — Acervo Jukebox</h2>
+          <p>Selecione um LP para colocar no prato ou adicione novas obras na pasta <code>lps/</code>.</p>
+        </div>
+        <button type="button" class="btn-close-crate" id="btn-close-crate" aria-label="Fechar estante">✕</button>
+      </div>
+      <div class="crate-grid">
+        {
+          allAlbums.map((item) => (
+            <a
+              href={withBase(`/lp/${item.slug}`)}
+              class:list={['crate-card', { active: item.slug === album.slug }]}
+            >
+              <div class="crate-card-cover">
+                <img src={withBase(item.coverUrl)} alt={`Capa de ${item.title}`} loading="lazy" />
+                <span class="crate-card-vinyl"></span>
+              </div>
+              <div class="crate-card-meta">
+                <span class="crate-card-genre">{item.genre}</span>
+                <h3>{item.title}</h3>
+                <p>{item.subtitle} · {item.totalDurationFormatted}</p>
+              </div>
+            </a>
+          ))
+        }
+
+        <div class="crate-card crate-card-new">
+          <div class="crate-new-icon">+</div>
+          <div class="crate-card-meta">
+            <span class="crate-card-genre">PRÓXIMA OBRA</span>
+            <h3>Adicionar Novo LP</h3>
+            <p>
+              Crie uma pasta em <code>lps/nome_do_disco/</code> com <code>album.json</code>, áudios e capa para aparecer automaticamente aqui.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Listening Room Grid -->
+  <main class="listening-room">
+    <!-- COLUNA ESQUERDA: VITROLA, CAPA, VIRAR DISCO E FAIXAS -->
+    <section class="turntable-column">
+      <!-- Side Switcher ("Chave Virar Disco") -->
+      <div class="side-switcher-bar">
+        <div class="side-tabs" role="tablist" aria-label="Lado do Disco">
+          <button
+            type="button"
+            class="side-tab active"
+            data-side-btn="A"
+            id="btn-side-a"
+          >
+            <span class="side-badge side-a-dot">LADO A</span>
+            <span class="side-name">{album.sides.A.title}</span>
+            <span class="side-time">{album.sides.A.durationFormatted}</span>
+          </button>
+          <button
+            type="button"
+            class="side-tab"
+            data-side-btn="B"
+            id="btn-side-b"
+          >
+            <span class="side-badge side-b-dot">LADO B</span>
+            <span class="side-name">{album.sides.B.title}</span>
+            <span class="side-time">{album.sides.B.durationFormatted}</span>
+          </button>
+        </div>
+
+        <button
+          type="button"
+          class="btn-flip-disc"
+          id="btn-flip-disc"
+          title="Virar o disco (Atalho: tecla F)"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+          </svg>
+          <span>Virar Disco</span>
+        </button>
+      </div>
+
+      <!-- Turntable & Sleeve Stage -->
+      <div class="vinyl-stage" id="vinyl-stage" data-active-side="A" data-playing="false">
+        <div class="stage-view-toggle">
+          <button type="button" class="stage-mode-btn active" data-stage-mode="sleeve" id="mode-sleeve-btn">
+            Capa + Vinil
+          </button>
+          <button type="button" class="stage-mode-btn" data-stage-mode="platter" id="mode-platter-btn">
+            Vitrola Aberta
+          </button>
+        </div>
+
+        <div class="sleeve-and-record" id="sleeve-and-record">
+          <!-- Capa do LP -->
+          <div class="lp-sleeve" id="lp-sleeve" title="Clique para alternar foco entre Capa e Vitrola">
+            <img src={normalizedAlbum.coverUrl} alt={`Capa do LP ${album.title}`} class="sleeve-img" />
+            <div class="sleeve-ringwear"></div>
+            <div class="sleeve-side-ribbon" id="sleeve-side-ribbon">
+              LADO A · O PESO E A MÁSCARA
+            </div>
+          </div>
+
+          <!-- Prato e Disco de Vinil 12" -->
+          <div class="vinyl-platter-wrap">
+            <div class="vinyl-disc" id="vinyl-disc">
+              <div class="vinyl-grooves"></div>
+              <div class="vinyl-sheen"></div>
+              <div class="vinyl-center-label" id="vinyl-center-label">
+                <div class="label-ring">
+                  <span class="label-top">SINTROPIA · 33 ⅓ RPM</span>
+                  <strong class="label-album-title">{album.title.toUpperCase()}</strong>
+                  <span class="label-side-indicator" id="label-side-indicator">LADO A</span>
+                  <span class="label-track-Readout" id="label-track-readout">01. Herança de Sal</span>
+                  <div class="spindle-hole"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Braço da Vitrola (Tonearm) -->
+            <div class="tonearm-assembly" id="tonearm-assembly">
+              <div class="tonearm-base"></div>
+              <div class="tonearm-rod" id="tonearm-rod">
+                <div class="tonearm-headshell"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aviso de Virada Dramática do Lado A -> Lado B (3.5s) -->
+        <div class="side-flip-banner" id="side-flip-banner" hidden>
+          <div class="flip-spinner"></div>
+          <div>
+            <strong>Fim do Lado A — Silêncio Dramático (3.5s)</strong>
+            <p>Levantando a agulha e virando o vinil para o Lado B: <em>A Fagulha e a Travessia</em>...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Descrição Dramática do Lado Ativo -->
+      <div class="side-narrative-box" id="side-narrative-box">
+        <div class="side-narrative-header">
+          <span class="side-tag" id="narrative-side-tag">LADO A — O PESO E A MÁSCARA</span>
+          <span class="side-filter-group">
+            <button type="button" class="filter-pill active" data-filter="side" id="filter-side-btn">
+              Ver Lado Ativo
+            </button>
+            <button type="button" class="filter-pill" data-filter="all" id="filter-all-btn">
+              Todas as 9 Faixas
+            </button>
+          </span>
+        </div>
+        <p class="side-narrative-text" id="narrative-side-desc">
+          {album.sides.A.description}
+        </p>
+      </div>
+
+      <!-- Lista de Faixas (Tracklist) -->
+      <div class="tracklist-container" role="list" id="tracklist-container">
+        {
+          album.tracks.map((track, idx) => (
+            <button
+              type="button"
+              class:list={['track-row', { active: idx === 0 }]}
+              data-track-index={idx}
+              data-track-side={track.side}
+            >
+              <div class="track-num-col">
+                <span class="track-num-text">{track.numberStr}</span>
+                <span class="track-eq-bars" aria-hidden="true">
+                  <i></i><i></i><i></i>
+                </span>
+              </div>
+
+              <div class="track-info-col">
+                <div class="track-title-line">
+                  <span class="track-title">{track.title}</span>
+                  {track.subtitle && <span class="track-subtitle">({track.subtitle})</span>}
+                  {track.pauseAfterSeconds > 0 && (
+                    <span class="track-turn-badge" title="3.5 segundos de silêncio dramático no fim do Lado A">
+                      Virada Lado A (+{track.pauseAfterSeconds}s)
+                    </span>
+                  )}
+                </div>
+                <div class="track-sub-line">
+                  <span class="track-side-mini">Lado {track.side}</span>
+                  <span>·</span>
+                  <span>{track.style}</span>
+                  <span>·</span>
+                  <span class="track-bpm">{track.bpm} BPM</span>
+                </div>
+              </div>
+
+              <div class="track-dur-col">
+                <span>{track.durationFormatted}</span>
+              </div>
+            </button>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- COLUNA DIREITA: LETRAS SINCRONIZADAS, ENCARTE E FICHA TÉCNICA -->
+    <section class="lyrics-column">
+      <!-- Abas de Conteúdo do Encarte -->
+      <div class="booklet-tabs-bar">
+        <div class="booklet-tabs" role="tablist">
+          <button type="button" class="booklet-tab active" data-tab-target="lyrics" id="tab-btn-lyrics">
+            Letra & Crônica
+          </button>
+          <button type="button" class="booklet-tab" data-tab-target="gatefold" id="tab-btn-gatefold">
+            Capa Interna & Contracapa
+          </button>
+          <button type="button" class="booklet-tab" data-tab-target="studio" id="tab-btn-studio">
+            Master, Vídeo & Capítulos
+          </button>
+        </div>
+
+        <div class="lyrics-controls" id="lyrics-toolbar">
+          <button
+            type="button"
+            class="tool-mini-btn active"
+            id="btn-autoscroll"
+            title="Rolar a letra automaticamente conforme a música avança"
+          >
+            Auto-Scroll
+          </button>
+          <button type="button" class="tool-mini-btn" id="btn-font-dec" title="Diminuir fonte da letra">A-</button>
+          <button type="button" class="tool-mini-btn" id="btn-font-inc" title="Aumentar fonte da letra">A+</button>
+        </div>
+      </div>
+
+      <!-- PAINEL 1: LETRA SINCRONIZADA E NOTA DE ENCARTE -->
+      <div class="tab-panel active" id="panel-lyrics">
+        <div class="track-hero-header">
+          <div class="track-hero-badges">
+            <span class="hero-side-badge" id="hero-side-badge">LADO A · FAIXA {initialTrack.numberStr}</span>
+            <span class="hero-meta-badge" id="hero-style-badge">{initialTrack.style}</span>
+            <span class="hero-meta-badge" id="hero-bpm-badge">{initialTrack.bpm} BPM</span>
+            <span class="hero-meta-badge" id="hero-dur-badge">{initialTrack.durationFormatted}</span>
+          </div>
+
+          <h1 class="track-hero-title" id="hero-track-title">{initialTrack.fullTitle}</h1>
+
+          <blockquote class="track-liner-note" id="hero-liner-note">
+            <span class="quote-mark">“</span>
+            <span id="hero-liner-text">{initialTrack.linerNote}</span>
+            <span class="quote-mark">”</span>
+          </blockquote>
+        </div>
+
+        <div class="lyrics-scroll-viewport" id="lyrics-viewport">
+          <div class="lyrics-stanzas-list" id="lyrics-stanzas-list">
+            {
+              initialTrack.stanzas.map((stanza, sIdx) => (
+                <div
+                  class:list={['lyric-stanza', { active: sIdx === 0 }]}
+                  data-stanza-index={sIdx}
+                  data-start={stanza.startTime}
+                  data-end={stanza.endTime}
+                  title="Clique para pular para este trecho da faixa"
+                >
+                  <span class="stanza-time-tag">
+                    {String(Math.floor(stanza.startTime / 60)).padStart(2, '0')}:
+                    {String(Math.floor(stanza.startTime % 60)).padStart(2, '0')}
+                  </span>
+                  {stanza.lines.map((line) => (
+                    <p class="lyric-line">{line}</p>
+                  ))}
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="lyrics-footer-nav">
+            <button type="button" class="btn-lyric-step" id="btn-lyric-prev">← Faixa Anterior</button>
+            <span class="lyric-hint">Dica: Clique em qualquer estrofe para avançar o áudio para aquele trecho</span>
+            <button type="button" class="btn-lyric-step" id="btn-lyric-next">Próxima Faixa →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAINEL 2: CAPA INTERNA (EPÍGRAFE), CONTRACAPA E CRÉDITOS -->
+      <div class="tab-panel" id="panel-gatefold" hidden>
+        <div class="gatefold-scroll">
+          <div class="epigraph-card">
+            <span class="section-eyebrow">EPÍGRAFE · CAPA INTERNA</span>
+            <p class="epigraph-quote">{album.epigraph}</p>
+          </div>
+
+          <div class="gatefold-two-col">
+            <div class="backcover-essay">
+              <span class="section-eyebrow">TEXTO DE CONTRACAPA</span>
+              <h3>A Travessia do Quarto Escuro à Cozinha</h3>
+              {album.backCoverText.map((para) => <p>{para}</p>)}
+            </div>
+
+            <div class="gatefold-specs">
+              <span class="section-eyebrow">FICHA TÉCNICA GERAL</span>
+              <dl class="specs-list">
+                <div>
+                  <dt>Título</dt>
+                  <dd>{album.title}</dd>
+                </div>
+                <div>
+                  <dt>Formato</dt>
+                  <dd>{album.format}</dd>
+                </div>
+                <div>
+                  <dt>Gênero</dt>
+                  <dd>{album.genre}</dd>
+                </div>
+                <div>
+                  <dt>Lado A</dt>
+                  <dd>{album.sides.A.title} (Faixas 01–05 · {album.sides.A.durationFormatted})</dd>
+                </div>
+                <div>
+                  <dt>Lado B</dt>
+                  <dd>{album.sides.B.title} (Faixas 06–09 · {album.sides.B.durationFormatted})</dd>
+                </div>
+                <div>
+                  <dt>Licença</dt>
+                  <dd>{album.license}</dd>
+                </div>
+              </dl>
+
+              <div class="dedication-box">
+                <p class="prod-line">{album.credits.production}</p>
+                <p class="ded-line">{album.credits.dedication}</p>
+              </div>
+
+              <a href={normalizedAlbum.bookletPdfUrl} target="_blank" rel="noopener" class="btn-download-booklet-full">
+                <span>Baixar Encarte Completo em PDF (Estética Vinil Anos 70)</span>
+                <span>↓ PDF</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAINEL 3: ESTÚDIO, CAPÍTULOS DO YOUTUBE & PIPELINE (FASES 1 A 5) -->
+      <div class="tab-panel" id="panel-studio" hidden>
+        <div class="studio-scroll">
+          <div class="studio-grid">
+            <div class="studio-card">
+              <div class="studio-card-head">
+                <span class="section-eyebrow">FASE 5 · DISTRIBUIÇÃO YOUTUBE 4K</span>
+                <button type="button" class="btn-copy-chapters" id="btn-copy-chapters">
+                  Copiar Timestamps
+                </button>
+              </div>
+              <h3>Capítulos Exatos do YouTube (Full Album)</h3>
+              <p class="studio-desc">
+                Calculados via inspeção exata de duração dos áudios incluindo os 3.5s de pausa dramática na virada do Lado A para o Lado B:
+              </p>
+              <pre class="chapters-pre" id="chapters-pre">{album.youtubeChapters.map((c) => c.line).join('\n')}</pre>
+            </div>
+
+            <div class="studio-card">
+              <span class="section-eyebrow">PIPELINE DE PRODUÇÃO LOCAL</span>
+              <h3>Assets & Scripts Automatizados</h3>
+              <ul class="pipeline-list">
+                <li>
+                  <strong>Fase 1 (Estrutura & Raw):</strong>
+                  <span>9 faixas organizadas em <code>lps/gravetos_escuro/raw/</code> e servidas na Jukebox.</span>
+                </li>
+                <li>
+                  <strong>Fase 2 (Masterização -14 LUFS):</strong>
+                  <span>Script <code>npm run album:master</code> (loudnorm I=-14:TP=-1.5:LRA=11 + WAV 24-bit/44.1kHz + FLAC + MP3 320k).</span>
+                </li>
+                <li>
+                  <strong>Fase 3 (Encarte PDF & Capa 3000px):</strong>
+                  <span>
+                    Template XeLaTeX compilado em <a href={normalizedAlbum.bookletPdfUrl} target="_blank">encarte-gravetos-no-escuro.pdf</a> e capa fechada em <code>3000x3000px</code>.
+                  </span>
+                </li>
+                <li>
+                  <strong>Fase 4 (Listening Room Astro):</strong>
+                  <span>Alimentada dinamicamente por <code>album.json</code> com suporte multi-LP.</span>
+                </li>
+                <li>
+                  <strong>Fase 5 (Render Vídeo 4K):</strong>
+                  <span>Script <code>npm run album:video</code> concatena as 9 faixas sobre a capa em 4K.</span>
+                </li>
+              </ul>
+
+              <div class="studio-links-row">
+                <a href={withBase('/lps/gravetos-no-escuro/album.json')} target="_blank" class="studio-pill-link">
+                  Ver album.json
+                </a>
+                <a href={normalizedAlbum.bookletPdfUrl} target="_blank" class="studio-pill-link">
+                  Abrir Encarte PDF
+                </a>
+                <a href={normalizedAlbum.coverUrl} target="_blank" class="studio-pill-link">
+                  Abrir Arte da Capa
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Barra Inferior Fixa: Deck Hi-Fi Contínuo -->
+  <footer class="hifi-deck">
+    <audio id="jukebox-audio" preload="metadata" src={initialTrack.audioUrl}></audio>
+
+    <div class="deck-now-playing">
+      <img src={normalizedAlbum.coverUrl} alt={album.title} class="deck-thumb" id="deck-thumb" />
+      <div class="deck-track-meta">
+        <div class="deck-side-line">
+          <span class="deck-side-pill" id="deck-side-pill">LADO A</span>
+          <span class="deck-bpm-pill" id="deck-bpm-pill">{initialTrack.bpm} BPM</span>
+        </div>
+        <strong class="deck-track-title" id="deck-track-title">
+          {initialTrack.numberStr}. {initialTrack.title}
+        </strong>
+        <span class="deck-track-style" id="deck-track-style">{initialTrack.style}</span>
+      </div>
+    </div>
+
+    <div class="deck-transport-center">
+      <div class="transport-buttons">
+        <button type="button" class="deck-btn" id="btn-prev" title="Faixa anterior (Tecla P)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+          </svg>
+        </button>
+
+        <button type="button" class="deck-btn-play" id="btn-play" title="Tocar / Pausar (Espaço)">
+          <svg class="icon-play" id="icon-play" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <svg class="icon-pause" id="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" hidden>
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+          </svg>
+        </button>
+
+        <button type="button" class="deck-btn" id="btn-next" title="Próxima faixa (Tecla N)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="deck-btn deck-btn-side"
+          id="btn-deck-flip"
+          title="Virar para o outro lado do disco (Tecla F)"
+        >
+          <span>⇄ Lado A/B</span>
+        </button>
+      </div>
+
+      <div class="deck-scrubber-row">
+        <span class="time-readout" id="time-current">00:00</span>
+        <div class="scrubber-wrap">
+          <input
+            type="range"
+            id="seek-slider"
+            class="seek-slider"
+            min="0"
+            max={initialTrack.durationSeconds}
+            step="0.1"
+            value="0"
+            aria-label="Progresso da faixa"
+          />
+        </div>
+        <span class="time-readout" id="time-total">{initialTrack.durationFormatted}</span>
+      </div>
+    </div>
+
+    <div class="deck-right-controls">
+      <label class="auto-flip-toggle" title="Virar automaticamente do Lado A para o Lado B após os 3.5s de silêncio da faixa 05">
+        <input type="checkbox" id="chk-auto-flip" checked />
+        <span>Virada Automática A→B</span>
+      </label>
+
+      <div class="volume-group">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <input
+          type="range"
+          id="volume-slider"
+          class="volume-slider"
+          min="0"
+          max="1"
+          step="0.02"
+          value="0.9"
+          aria-label="Volume"
+        />
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Serialized Album Data for Client-Side Interactivity -->
+<script is:inline define:vars={{ albumData: normalizedAlbum }}>
+  window.__JUKEBOX_ALBUM__ = albumData;
+</script>
+
+<script>
+  const album = (window as any).__JUKEBOX_ALBUM__;
+  if (album) {
+    let currentTrackIdx = 0;
+    let activeSide: 'A' | 'B' = 'A';
+    let isPlaying = false;
+    let autoScrollLyrics = true;
+    let trackFilter: 'side' | 'all' = 'side';
+    let lyricFontScale = 1;
+    let flipTimeoutId: number | null = null;
+
+    // DOM Elements
+    const audio = document.getElementById('jukebox-audio') as HTMLAudioElement;
+    const vinylStage = document.getElementById('vinyl-stage') as HTMLElement;
+    const sleeveAndRecord = document.getElementById('sleeve-and-record') as HTMLElement;
+    const tonearmRod = document.getElementById('tonearm-rod') as HTMLElement;
+    const btnSideA = document.getElementById('btn-side-a') as HTMLButtonElement;
+    const btnSideB = document.getElementById('btn-side-b') as HTMLButtonElement;
+    const btnFlipDisc = document.getElementById('btn-flip-disc') as HTMLButtonElement;
+    const btnDeckFlip = document.getElementById('btn-deck-flip') as HTMLButtonElement;
+    const sleeveSideRibbon = document.getElementById('sleeve-side-ribbon') as HTMLElement;
+    const labelSideIndicator = document.getElementById('label-side-indicator') as HTMLElement;
+    const labelTrackReadout = document.getElementById('label-track-readout') as HTMLElement;
+    const vinylCenterLabel = document.getElementById('vinyl-center-label') as HTMLElement;
+    const narrativeSideTag = document.getElementById('narrative-side-tag') as HTMLElement;
+    const narrativeSideDesc = document.getElementById('narrative-side-desc') as HTMLElement;
+    const filterSideBtn = document.getElementById('filter-side-btn') as HTMLButtonElement;
+    const filterAllBtn = document.getElementById('filter-all-btn') as HTMLButtonElement;
+    const trackRows = Array.from(document.querySelectorAll('.track-row')) as HTMLButtonElement[];
+    const sideFlipBanner = document.getElementById('side-flip-banner') as HTMLElement;
+
+    // Lyrics & Hero Elements
+    const heroSideBadge = document.getElementById('hero-side-badge') as HTMLElement;
+    const heroStyleBadge = document.getElementById('hero-style-badge') as HTMLElement;
+    const heroBpmBadge = document.getElementById('hero-bpm-badge') as HTMLElement;
+    const heroDurBadge = document.getElementById('hero-dur-badge') as HTMLElement;
+    const heroTrackTitle = document.getElementById('hero-track-title') as HTMLElement;
+    const heroLinerText = document.getElementById('hero-liner-text') as HTMLElement;
+    const lyricsStanzasList = document.getElementById('lyrics-stanzas-list') as HTMLElement;
+    const lyricsViewport = document.getElementById('lyrics-viewport') as HTMLElement;
+
+    // Deck Elements
+    const btnPlay = document.getElementById('btn-play') as HTMLButtonElement;
+    const iconPlay = document.getElementById('icon-play') as HTMLElement;
+    const iconPause = document.getElementById('icon-pause') as HTMLElement;
+    const btnPrev = document.getElementById('btn-prev') as HTMLButtonElement;
+    const btnNext = document.getElementById('btn-next') as HTMLButtonElement;
+    const seekSlider = document.getElementById('seek-slider') as HTMLInputElement;
+    const timeCurrent = document.getElementById('time-current') as HTMLElement;
+    const timeTotal = document.getElementById('time-total') as HTMLElement;
+    const volumeSlider = document.getElementById('volume-slider') as HTMLInputElement;
+    const chkAutoFlip = document.getElementById('chk-auto-flip') as HTMLInputElement;
+    const deckSidePill = document.getElementById('deck-side-pill') as HTMLElement;
+    const deckBpmPill = document.getElementById('deck-bpm-pill') as HTMLElement;
+    const deckTrackTitle = document.getElementById('deck-track-title') as HTMLElement;
+    const deckTrackStyle = document.getElementById('deck-track-style') as HTMLElement;
+
+    // Web Audio API Vinyl Crackle Synthesizer
+    let audioCtx: AudioContext | null = null;
+    let crackleNode: ScriptProcessorNode | null = null;
+    let crackleGain: GainNode | null = null;
+    let crackleEnabled = false;
+    const btnCrackleToggle = document.getElementById('btn-crackle-toggle') as HTMLButtonElement;
+    const crackleLed = document.getElementById('crackle-led') as HTMLElement;
+
+    function toggleVinylCrackle() {
+      crackleEnabled = !crackleEnabled;
+      crackleLed.classList.toggle('on', crackleEnabled);
+      btnCrackleToggle.classList.toggle('active', crackleEnabled);
+
+      if (crackleEnabled) {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+          audioCtx = new AudioContextClass();
+          crackleNode = audioCtx.createScriptProcessor(4096, 1, 1);
+          let lastOut = 0.0;
+          crackleNode.onaudioprocess = (e) => {
+            const output = e.outputBuffer.getChannelData(0);
+            for (let i = 0; i < output.length; i++) {
+              // Warm surface hiss + occasional micro vinyl dust pop
+              const white = Math.random() * 2 - 1;
+              lastOut = (lastOut + 0.04 * white) / 1.04;
+              let sample = lastOut * 0.14;
+              if (Math.random() < 0.0018) {
+                sample += (Math.random() * 2 - 1) * 0.65;
+              }
+              output[i] = sample;
+            }
+          };
+          crackleGain = audioCtx.createGain();
+          crackleGain.gain.value = isPlaying ? 0.045 : 0.01;
+          crackleNode.connect(crackleGain);
+          crackleGain.connect(audioCtx.destination);
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        if (crackleGain) {
+          crackleGain.gain.value = isPlaying ? 0.045 : 0.012;
+        }
+      } else if (crackleGain) {
+        crackleGain.gain.value = 0;
+      }
+    }
+
+    btnCrackleToggle?.addEventListener('click', toggleVinylCrackle);
+
+    function formatSec(sec: number): string {
+      if (!Number.isFinite(sec) || sec < 0) return '00:00';
+      const total = Math.floor(sec);
+      const m = Math.floor(total / 60);
+      const s = total % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function applyTrackFilter() {
+      trackRows.forEach((row) => {
+        const rowSide = row.getAttribute('data-track-side');
+        if (trackFilter === 'all' || rowSide === activeSide) {
+          row.style.display = 'grid';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    function updateSideUI(side: 'A' | 'B', animateFlip = false) {
+      activeSide = side;
+      const sideMeta = album.sides[side];
+
+      btnSideA.classList.toggle('active', side === 'A');
+      btnSideB.classList.toggle('active', side === 'B');
+      vinylStage.setAttribute('data-active-side', side);
+
+      if (animateFlip) {
+        sleeveAndRecord.classList.add('flipping');
+        setTimeout(() => sleeveAndRecord.classList.remove('flipping'), 650);
+      }
+
+      sleeveSideRibbon.textContent = `LADO ${side} · ${sideMeta.title.toUpperCase()}`;
+      labelSideIndicator.textContent = `LADO ${side}`;
+      vinylCenterLabel.setAttribute('data-side', side);
+
+      narrativeSideTag.textContent = `LADO ${side} — ${sideMeta.title.toUpperCase()} (${sideMeta.durationFormatted})`;
+      narrativeSideDesc.textContent = sideMeta.description;
+
+      applyTrackFilter();
+    }
+
+    function renderLyricsForTrack(track: any) {
+      lyricsStanzasList.innerHTML = '';
+      track.stanzas.forEach((stanza: any, idx: number) => {
+        const div = document.createElement('div');
+        div.className = `lyric-stanza${idx === 0 ? ' active' : ''}`;
+        div.setAttribute('data-stanza-index', String(idx));
+        div.setAttribute('data-start', String(stanza.startTime));
+        div.setAttribute('data-end', String(stanza.endTime));
+        div.title = 'Clique para pular para este trecho da faixa';
+
+        const timeTag = document.createElement('span');
+        timeTag.className = 'stanza-time-tag';
+        timeTag.textContent = formatSec(stanza.startTime);
+        div.appendChild(timeTag);
+
+        stanza.lines.forEach((line: string) => {
+          const p = document.createElement('p');
+          p.className = 'lyric-line';
+          p.textContent = line;
+          div.appendChild(p);
+        });
+
+        div.addEventListener('click', () => {
+          audio.currentTime = stanza.startTime;
+          if (!isPlaying) {
+            playAudio();
+          }
+        });
+
+        lyricsStanzasList.appendChild(div);
+      });
+
+      lyricsViewport.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function loadTrack(index: number, autoPlay = false) {
+      if (flipTimeoutId) {
+        clearTimeout(flipTimeoutId);
+        flipTimeoutId = null;
+        sideFlipBanner.hidden = true;
+      }
+
+      currentTrackIdx = (index + album.tracks.length) % album.tracks.length;
+      const track = album.tracks[currentTrackIdx];
+
+      if (track.side !== activeSide) {
+        updateSideUI(track.side, true);
+      }
+
+      // Highlight track row
+      trackRows.forEach((row, i) => {
+        row.classList.toggle('active', i === currentTrackIdx);
+      });
+
+      // Update Center Label & Hero
+      labelTrackReadout.textContent = `${track.numberStr}. ${track.title}`;
+      heroSideBadge.textContent = `LADO ${track.side} · FAIXA ${track.numberStr}`;
+      heroSideBadge.setAttribute('data-side', track.side);
+      heroStyleBadge.textContent = track.style;
+      heroBpmBadge.textContent = `${track.bpm} BPM`;
+      heroDurBadge.textContent = track.durationFormatted;
+      heroTrackTitle.textContent = track.fullTitle;
+      heroLinerText.textContent = track.linerNote;
+
+      // Update Deck
+      deckSidePill.textContent = `LADO ${track.side}`;
+      deckSidePill.setAttribute('data-side', track.side);
+      deckBpmPill.textContent = `${track.bpm} BPM`;
+      deckTrackTitle.textContent = `${track.numberStr}. ${track.title}`;
+      deckTrackStyle.textContent = track.style;
+
+      // Update Audio
+      audio.src = track.audioUrl;
+      seekSlider.max = String(track.durationSeconds);
+      seekSlider.value = '0';
+      timeCurrent.textContent = '00:00';
+      timeTotal.textContent = track.durationFormatted;
+
+      renderLyricsForTrack(track);
+      updateTonearmAngle(0);
+
+      if (autoPlay) {
+        playAudio();
+      }
+    }
+
+    function updateTonearmAngle(progressRatio: number) {
+      if (!isPlaying) {
+        tonearmRod.style.transform = `rotate(0deg)`;
+        return;
+      }
+      // Sweep from 18deg (outer groove) to 34deg (inner groove)
+      const angle = 18 + Math.min(Math.max(progressRatio, 0), 1) * 16;
+      tonearmRod.style.transform = `rotate(${angle.toFixed(2)}deg)`;
+    }
+
+    function playAudio() {
+      audio
+        .play()
+        .then(() => {
+          isPlaying = true;
+          vinylStage.setAttribute('data-playing', 'true');
+          iconPlay.hidden = true;
+          iconPause.hidden = false;
+          if (crackleEnabled && crackleGain) {
+            crackleGain.gain.value = 0.045;
+          }
+          const ratio = audio.duration ? audio.currentTime / audio.duration : 0;
+          updateTonearmAngle(ratio);
+        })
+        .catch((err) => {
+          console.warn('Interação necessária para iniciar reprodução:', err);
+        });
+    }
+
+    function pauseAudio() {
+      audio.pause();
+      isPlaying = false;
+      vinylStage.setAttribute('data-playing', 'false');
+      iconPlay.hidden = false;
+      iconPause.hidden = true;
+      if (crackleEnabled && crackleGain) {
+        crackleGain.gain.value = 0.01;
+      }
+      updateTonearmAngle(0);
+    }
+
+    // Bind initial server-rendered stanzas click
+    document.querySelectorAll('.lyric-stanza').forEach((el) => {
+      el.addEventListener('click', () => {
+        const start = parseFloat(el.getAttribute('data-start') || '0');
+        audio.currentTime = start;
+        if (!isPlaying) playAudio();
+      });
+    });
+
+    // Audio Events
+    audio.addEventListener('timeupdate', () => {
+      const current = audio.currentTime;
+      const duration = audio.duration || album.tracks[currentTrackIdx].durationSeconds;
+      seekSlider.value = String(current);
+      timeCurrent.textContent = formatSec(current);
+
+      const ratio = duration > 0 ? current / duration : 0;
+      updateTonearmAngle(ratio);
+
+      // Sync active lyric stanza
+      const stanzaEls = Array.from(lyricsStanzasList.querySelectorAll('.lyric-stanza')) as HTMLElement[];
+      let activeStanzaEl: HTMLElement | null = null;
+
+      for (const el of stanzaEls) {
+        const start = parseFloat(el.getAttribute('data-start') || '0');
+        const end = parseFloat(el.getAttribute('data-end') || '9999');
+        if (current >= start && current <= end) {
+          activeStanzaEl = el;
+          break;
+        }
+      }
+
+      if (activeStanzaEl && !activeStanzaEl.classList.contains('active')) {
+        stanzaEls.forEach((el) => el.classList.remove('active'));
+        activeStanzaEl.classList.add('active');
+        if (autoScrollLyrics) {
+          activeStanzaEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    });
+
+    audio.addEventListener('ended', () => {
+      const finishedTrack = album.tracks[currentTrackIdx];
+      // Check if this is Track 05 (end of Side A with dramatic 3.5s silence)
+      if (finishedTrack.pauseAfterSeconds > 0 && currentTrackIdx === 4) {
+        pauseAudio();
+        if (chkAutoFlip.checked) {
+          sideFlipBanner.hidden = false;
+          flipTimeoutId = window.setTimeout(() => {
+            sideFlipBanner.hidden = true;
+            loadTrack(5, true); // Track 06 (Start of Side B)
+          }, finishedTrack.pauseAfterSeconds * 1000);
+        } else {
+          updateSideUI('B', true);
+          loadTrack(5, false);
+        }
+        return;
+      }
+
+      if (currentTrackIdx < album.tracks.length - 1) {
+        loadTrack(currentTrackIdx + 1, true);
+      } else {
+        pauseAudio();
+      }
+    });
+
+    // Transport Controls
+    btnPlay.addEventListener('click', () => {
+      if (isPlaying) pauseAudio();
+      else playAudio();
+    });
+
+    btnPrev.addEventListener('click', () => {
+      if (audio.currentTime > 4) {
+        audio.currentTime = 0;
+      } else {
+        loadTrack(currentTrackIdx - 1, isPlaying);
+      }
+    });
+
+    btnNext.addEventListener('click', () => {
+      loadTrack(currentTrackIdx + 1, isPlaying);
+    });
+
+    document.getElementById('btn-lyric-prev')?.addEventListener('click', () => {
+      loadTrack(currentTrackIdx - 1, isPlaying);
+    });
+    document.getElementById('btn-lyric-next')?.addEventListener('click', () => {
+      loadTrack(currentTrackIdx + 1, isPlaying);
+    });
+
+    seekSlider.addEventListener('input', () => {
+      audio.currentTime = parseFloat(seekSlider.value);
+    });
+
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = parseFloat(volumeSlider.value);
+    });
+
+    // Tracklist clicks
+    trackRows.forEach((row) => {
+      row.addEventListener('click', () => {
+        const idx = parseInt(row.getAttribute('data-track-index') || '0', 10);
+        if (idx === currentTrackIdx) {
+          if (isPlaying) pauseAudio();
+          else playAudio();
+        } else {
+          loadTrack(idx, true);
+        }
+      });
+    });
+
+    // Side Switching ("Virar Disco")
+    function flipSide(targetSide?: 'A' | 'B') {
+      const nextSide = targetSide || (activeSide === 'A' ? 'B' : 'A');
+      updateSideUI(nextSide, true);
+      // If current track is not on the newly flipped side, jump to the first track of that side
+      const currentTrack = album.tracks[currentTrackIdx];
+      if (currentTrack.side !== nextSide) {
+        const firstTrackOfSideIdx = album.tracks.findIndex((t: any) => t.side === nextSide);
+        if (firstTrackOfSideIdx !== -1) {
+          loadTrack(firstTrackOfSideIdx, isPlaying);
+        }
+      }
+    }
+
+    btnSideA.addEventListener('click', () => flipSide('A'));
+    btnSideB.addEventListener('click', () => flipSide('B'));
+    btnFlipDisc.addEventListener('click', () => flipSide());
+    btnDeckFlip.addEventListener('click', () => flipSide());
+
+    // Filter Side vs All Tracks
+    filterSideBtn.addEventListener('click', () => {
+      trackFilter = 'side';
+      filterSideBtn.classList.add('active');
+      filterAllBtn.classList.remove('active');
+      applyTrackFilter();
+    });
+
+    filterAllBtn.addEventListener('click', () => {
+      trackFilter = 'all';
+      filterAllBtn.classList.add('active');
+      filterSideBtn.classList.remove('active');
+      applyTrackFilter();
+    });
+
+    // Stage Mode Toggle (Capa + Vinil vs Vitrola Aberta)
+    const modeSleeveBtn = document.getElementById('mode-sleeve-btn');
+    const modePlatterBtn = document.getElementById('mode-platter-btn');
+    const lpSleeve = document.getElementById('lp-sleeve');
+
+    modeSleeveBtn?.addEventListener('click', () => {
+      vinylStage.classList.remove('platter-only');
+      modeSleeveBtn.classList.add('active');
+      modePlatterBtn?.classList.remove('active');
+    });
+
+    modePlatterBtn?.addEventListener('click', () => {
+      vinylStage.classList.add('platter-only');
+      modePlatterBtn.classList.add('active');
+      modeSleeveBtn?.classList.remove('active');
+    });
+
+    lpSleeve?.addEventListener('click', () => {
+      const isPlatter = vinylStage.classList.toggle('platter-only');
+      modePlatterBtn?.classList.toggle('active', isPlatter);
+      modeSleeveBtn?.classList.toggle('active', !isPlatter);
+    });
+
+    // Right Column Tabs (Letra / Capa Interna / Estúdio)
+    const tabBtns = Array.from(document.querySelectorAll('.booklet-tab'));
+    const panels: Record<string, HTMLElement | null> = {
+      lyrics: document.getElementById('panel-lyrics'),
+      gatefold: document.getElementById('panel-gatefold'),
+      studio: document.getElementById('panel-studio'),
+    };
+    const lyricsToolbar = document.getElementById('lyrics-toolbar');
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-tab-target') || 'lyrics';
+        tabBtns.forEach((b) => b.classList.toggle('active', b === btn));
+        Object.entries(panels).forEach(([key, panel]) => {
+          if (panel) {
+            const isTarget = key === target;
+            panel.hidden = !isTarget;
+            panel.classList.toggle('active', isTarget);
+          }
+        });
+        if (lyricsToolbar) {
+          lyricsToolbar.style.visibility = target === 'lyrics' ? 'visible' : 'hidden';
+        }
+      });
+    });
+
+    // Lyrics Toolbar Controls
+    const btnAutoScroll = document.getElementById('btn-autoscroll');
+    btnAutoScroll?.addEventListener('click', () => {
+      autoScrollLyrics = !autoScrollLyrics;
+      btnAutoScroll.classList.toggle('active', autoScrollLyrics);
+    });
+
+    document.getElementById('btn-font-inc')?.addEventListener('click', () => {
+      lyricFontScale = Math.min(lyricFontScale + 0.1, 1.45);
+      lyricsStanzasList.style.setProperty('--lyric-scale', String(lyricFontScale));
+    });
+
+    document.getElementById('btn-font-dec')?.addEventListener('click', () => {
+      lyricFontScale = Math.max(lyricFontScale - 0.1, 0.85);
+      lyricsStanzasList.style.setProperty('--lyric-scale', String(lyricFontScale));
+    });
+
+    // Crate Drawer Toggle
+    const crateDrawer = document.getElementById('crate-drawer');
+    const btnOpenCrate = document.getElementById('btn-open-crate');
+    const btnCloseCrate = document.getElementById('btn-close-crate');
+
+    btnOpenCrate?.addEventListener('click', () => {
+      if (!crateDrawer) return;
+      const isHidden = crateDrawer.hidden;
+      crateDrawer.hidden = !isHidden;
+      btnOpenCrate.setAttribute('aria-expanded', String(isHidden));
+    });
+
+    btnCloseCrate?.addEventListener('click', () => {
+      if (crateDrawer) crateDrawer.hidden = true;
+      btnOpenCrate?.setAttribute('aria-expanded', 'false');
+    });
+
+    // Copy YouTube Chapters
+    const btnCopyChapters = document.getElementById('btn-copy-chapters');
+    const chaptersPre = document.getElementById('chapters-pre');
+    btnCopyChapters?.addEventListener('click', () => {
+      if (!chaptersPre) return;
+      navigator.clipboard.writeText(chaptersPre.textContent || '');
+      const original = btnCopyChapters.textContent;
+      btnCopyChapters.textContent = 'Copiado!';
+      setTimeout(() => {
+        btnCopyChapters.textContent = original;
+      }, 2000);
+    });
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        if (isPlaying) pauseAudio();
+        else playAudio();
+      } else if (e.key === 'f' || e.key === 'F') {
+        flipSide();
+      } else if (e.key === 'n' || e.key === 'N') {
+        loadTrack(currentTrackIdx + 1, isPlaying);
+      } else if (e.key === 'p' || e.key === 'P') {
+        loadTrack(currentTrackIdx - 1, isPlaying);
+      }
+    });
+
+    // Initialize filter for Side A
+    applyTrackFilter();
+  }
+</script>
+
+<style>
+  .jukebox-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-bottom: 94px;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    background: rgba(17, 13, 10, 0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    gap: 1rem;
+  }
+
+  .brand-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--text-main);
+  }
+
+  .vinyl-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #8c3b2b 0 26%, #16120e 28% 100%);
+    border: 1.5px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px rgba(217, 155, 82, 0.25);
+  }
+
+  .vinyl-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-main);
+  }
+
+  .brand-title {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-warm);
+  }
+
+  .brand-sub {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .divider-v {
+    width: 1px;
+    height: 24px;
+    background: var(--border-subtle);
+  }
+
+  .crate-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: rgba(45, 33, 24, 0.7);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+    padding: 0.42rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .crate-trigger:hover {
+    border-color: var(--accent);
+    background: rgba(65, 47, 33, 0.85);
+  }
+
+  .current-lp-pill {
+    background: rgba(217, 155, 82, 0.18);
+    color: var(--accent-warm);
+    padding: 0.12rem 0.55rem;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+  }
+
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .action-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.42rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    background: rgba(35, 26, 19, 0.85);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .action-chip:hover,
+  .action-chip.active {
+    border-color: var(--accent);
+    color: var(--text-main);
+  }
+
+  .action-chip-gold {
+    background: linear-gradient(135deg, rgba(158, 67, 50, 0.45), rgba(217, 155, 82, 0.25));
+    border-color: rgba(217, 155, 82, 0.45);
+    color: var(--accent-warm);
+  }
+
+  .led-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4a3d31;
+    transition: all 0.2s;
+  }
+
+  .led-indicator.on {
+    background: #e89b3c;
+    box-shadow: 0 0 8px #e89b3c;
+  }
+
+  /* CRATE DRAWER */
+  .crate-drawer {
+    background: rgba(22, 16, 12, 0.97);
+    border-bottom: 1px solid var(--border-strong);
+    padding: 1.5rem;
+    animation: slideDown 0.25s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .crate-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+
+  .crate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.1rem;
+  }
+
+  .crate-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--accent-warm);
+  }
+
+  .crate-header p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  .btn-close-crate {
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .crate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .crate-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem;
+    border-radius: 12px;
+    background: rgba(38, 28, 20, 0.7);
+    border: 1px solid var(--border-subtle);
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+  }
+
+  .crate-card.active,
+  .crate-card:hover {
+    border-color: var(--accent);
+    background: rgba(58, 42, 29, 0.8);
+  }
+
+  .crate-card-cover {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
+  }
+
+  .crate-card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .crate-card-meta h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    margin: 0.15rem 0;
+  }
+
+  .crate-card-meta p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.35;
+  }
+
+  .crate-card-genre {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .crate-card-new {
+    border-style: dashed;
+    opacity: 0.85;
+  }
+
+  .crate-new-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    border: 1px dashed var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* MAIN LISTENING ROOM GRID */
+  .listening-room {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 1120px) {
+    .listening-room {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* LEFT COLUMN: TURNTABLE & TRACKLIST */
+  .turntable-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .side-switcher-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+    background: var(--bg-card);
+    padding: 0.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .side-tabs {
+    display: flex;
+    gap: 0.4rem;
+    flex: 1;
+  }
+
+  .side-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.45rem 0.7rem;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+  }
+
+  .side-tab.active {
+    background: rgba(217, 155, 82, 0.14);
+    border-color: var(--border-strong);
+    color: var(--text-main);
+  }
+
+  .side-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+  }
+
+  .side-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.1rem;
+  }
+
+  .side-time {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  .btn-flip-disc {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #8c3b2b, #69291c);
+    color: #fff3e6;
+    border: 1px solid rgba(255, 214, 170, 0.3);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .btn-flip-disc:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(140, 59, 43, 0.45);
+  }
+
+  /* VINYL STAGE */
+  .vinyl-stage {
+    position: relative;
+    background: radial-gradient(circle at center, #261c14 0%, #140f0b 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 1.35rem 1.1rem 1.5rem;
+    overflow: hidden;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.65);
+  }
+
+  .stage-view-toggle {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .stage-mode-btn {
+    background: rgba(20, 15, 11, 0.75);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .stage-mode-btn.active {
+    color: var(--accent-warm);
+    border-color: var(--accent);
+    background: rgba(217, 155, 82, 0.15);
+  }
+
+  .sleeve-and-record {
+    position: relative;
+    height: 310px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    perspective: 1000px;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sleeve-and-record.flipping {
+    transform: rotateY(180deg) scale(0.94);
+  }
+
+  .lp-sleeve {
+    position: relative;
+    width: 270px;
+    height: 270px;
+    z-index: 3;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow:
+      12px 0 28px rgba(0, 0, 0, 0.75),
+      0 8px 24px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .vinyl-stage.platter-only .lp-sleeve {
+    transform: translateX(-220px) scale(0.88);
+    opacity: 0.25;
+  }
+
+  .sleeve-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .sleeve-side-ribbon {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background: rgba(17, 13, 10, 0.86);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(217, 155, 82, 0.4);
+    color: var(--accent-warm);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-align: center;
+    padding: 0.28rem 0.5rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .vinyl-platter-wrap {
+    position: absolute;
+    right: 16px;
+    width: 268px;
+    height: 268px;
+    z-index: 2;
+    transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .vinyl-stage.platter-only .vinyl-platter-wrap {
+    right: 95px;
+    transform: scale(1.06);
+    z-index: 4;
+  }
+
+  .vinyl-disc {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, #111 0%, #090909 68%, #1a1a1a 69%, #0a0a0a 71%, #141414 100%);
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.85),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.06);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spinVinyl 4.5s linear infinite;
+    animation-play-state: paused;
+  }
+
+  .vinyl-stage[data-playing='true'] .vinyl-disc {
+    animation-play-state: running;
+  }
+
+  @keyframes spinVinyl {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .vinyl-grooves {
+    position: absolute;
+    inset: 10px;
+    border-radius: 50%;
+    background: repeating-radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+    pointer-events: none;
+  }
+
+  .vinyl-sheen {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 35deg,
+      transparent 0deg,
+      rgba(255, 232, 198, 0.09) 25deg,
+      transparent 55deg,
+      transparent 180deg,
+      rgba(255, 232, 198, 0.09) 205deg,
+      transparent 235deg
+    );
+    pointer-events: none;
+  }
+
+  .vinyl-center-label {
+    width: 98px;
+    height: 98px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #9e4332 0%, #6d291d 100%);
+    border: 2px solid #e3c398;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6px;
+    position: relative;
+    z-index: 3;
+    transition: background 0.35s ease;
+  }
+
+  .vinyl-center-label[data-side='B'] {
+    background: radial-gradient(circle, #2e6353 0%, #1c3f35 100%);
+  }
+
+  .label-ring {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 240, 218, 0.4);
+    padding: 4px;
+    color: #f9ecda;
+  }
+
+  .label-top {
+    font-family: var(--font-mono);
+    font-size: 0.42rem;
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+  }
+
+  .label-album-title {
+    font-family: var(--font-display);
+    font-size: 0.46rem;
+    margin-top: 2px;
+  }
+
+  .label-side-indicator {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    font-weight: 700;
+    color: #ffd39b;
+    margin-bottom: 14px;
+  }
+
+  .label-track-Readout {
+    font-family: var(--font-mono);
+    font-size: 0.42rem;
+    max-width: 78px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .spindle-hole {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #120d0a;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+  }
+
+  /* TONEARM */
+  .tonearm-assembly {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    width: 60px;
+    height: 220px;
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  .tonearm-base {
+    position: absolute;
+    top: 8px;
+    right: 6px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #c89d66 0%, #523d28 80%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  }
+
+  .tonearm-rod {
+    position: absolute;
+    top: 25px;
+    right: 21px;
+    width: 5px;
+    height: 168px;
+    background: linear-gradient(90deg, #d7b58a, #8a6c49);
+    border-radius: 4px;
+    transform-origin: top center;
+    transform: rotate(0deg);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: -3px 4px 8px rgba(0, 0, 0, 0.55);
+  }
+
+  .tonearm-headshell {
+    position: absolute;
+    bottom: -8px;
+    left: -5px;
+    width: 14px;
+    height: 22px;
+    background: #2c2018;
+    border: 1px solid #d7b58a;
+    border-radius: 3px;
+    transform: rotate(18deg);
+  }
+
+  /* SIDE FLIP BANNER */
+  .side-flip-banner {
+    margin-top: 0.85rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    background: rgba(158, 67, 50, 0.32);
+    border: 1px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .flip-spinner {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-warm);
+    border-top-color: transparent;
+    animation: spinVinyl 0.9s linear infinite;
+    flex-shrink: 0;
+  }
+
+  /* SIDE NARRATIVE BOX */
+  .side-narrative-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+  }
+
+  .side-narrative-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .side-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent-warm);
+  }
+
+  .side-filter-group {
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .filter-pill {
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .filter-pill.active {
+    background: rgba(217, 155, 82, 0.16);
+    color: var(--accent-warm);
+    border-color: var(--accent);
+  }
+
+  .side-narrative-text {
+    font-size: 0.8rem;
+    line-height: 1.48;
+    color: var(--text-secondary);
+  }
+
+  /* TRACKLIST */
+  .tracklist-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.38rem;
+  }
+
+  .track-row {
+    display: grid;
+    grid-template-columns: 34px 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.68rem 0.85rem;
+    border-radius: 10px;
+    background: rgba(28, 21, 15, 0.72);
+    border: 1px solid rgba(217, 155, 82, 0.12);
+    color: var(--text-main);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+
+  .track-row:hover {
+    background: rgba(48, 35, 25, 0.82);
+    border-color: rgba(217, 155, 82, 0.32);
+  }
+
+  .track-row.active {
+    background: linear-gradient(90deg, rgba(158, 67, 50, 0.32), rgba(217, 155, 82, 0.14));
+    border-color: var(--accent);
+  }
+
+  .track-num-col {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .track-eq-bars {
+    display: none;
+    align-items: flex-end;
+    gap: 2px;
+    height: 13px;
+  }
+
+  .track-eq-bars i {
+    width: 3px;
+    background: var(--accent-warm);
+    display: inline-block;
+    animation: eqPulse 0.8s ease-in-out infinite alternate;
+  }
+
+  .track-eq-bars i:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .track-eq-bars i:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes eqPulse {
+    from {
+      height: 3px;
+    }
+    to {
+      height: 13px;
+    }
+  }
+
+  .track-row.active .track-num-text {
+    display: none;
+  }
+  .track-row.active .track-eq-bars {
+    display: inline-flex;
+  }
+
+  .track-title-line {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+
+  .track-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .track-subtitle {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .track-turn-badge {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    background: rgba(158, 67, 50, 0.35);
+    border: 1px solid rgba(217, 155, 82, 0.35);
+    color: var(--accent-warm);
+    padding: 0.08rem 0.42rem;
+    border-radius: 4px;
+  }
+
+  .track-sub-line {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.73rem;
+    color: var(--text-muted);
+    margin-top: 0.18rem;
+  }
+
+  .track-bpm {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+  }
+
+  .track-dur-col {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+  }
+
+  /* RIGHT COLUMN: LYRICS & BOOKLET */
+  .lyrics-column {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 760px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .booklet-tabs-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+    background: rgba(20, 15, 11, 0.75);
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .booklet-tabs {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .booklet-tab {
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .booklet-tab:hover {
+    color: var(--text-main);
+  }
+
+  .booklet-tab.active {
+    background: rgba(217, 155, 82, 0.16);
+    border-color: var(--border-strong);
+    color: var(--accent-warm);
+  }
+
+  .lyrics-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .tool-mini-btn {
+    background: rgba(38, 28, 20, 0.8);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.28rem 0.55rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .tool-mini-btn.active {
+    border-color: var(--accent);
+    color: var(--accent-warm);
+    background: rgba(217, 155, 82, 0.16);
+  }
+
+  /* TRACK HERO HEADER */
+  .track-hero-header {
+    padding: 1.35rem 1.75rem 1.1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: linear-gradient(180deg, rgba(45, 31, 21, 0.55) 0%, rgba(25, 18, 13, 0.2) 100%);
+  }
+
+  .track-hero-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.55rem;
+  }
+
+  .hero-side-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    background: #8c3b2b;
+    color: #fff2e2;
+  }
+
+  .hero-side-badge[data-side='B'] {
+    background: #2d5a4c;
+  }
+
+  .hero-meta-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    background: rgba(217, 155, 82, 0.12);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+  }
+
+  .track-hero-title {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+    line-height: 1.18;
+  }
+
+  .track-liner-note {
+    background: rgba(243, 234, 216, 0.06);
+    border-left: 3px solid var(--accent);
+    padding: 0.65rem 1rem;
+    border-radius: 0 8px 8px 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--accent-warm);
+    line-height: 1.5;
+  }
+
+  .quote-mark {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* LYRICS VIEWPORT */
+  .lyrics-scroll-viewport {
+    padding: 1.5rem 1.75rem;
+    max-height: 540px;
+    overflow-y: auto;
+  }
+
+  .lyrics-stanzas-list {
+    --lyric-scale: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  :global(.lyric-stanza) {
+    position: relative;
+    padding: 0.95rem 1.2rem;
+    border-radius: 12px;
+    background: rgba(22, 16, 12, 0.45);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  :global(.lyric-stanza:hover) {
+    background: rgba(45, 33, 24, 0.55);
+    border-color: rgba(217, 155, 82, 0.25);
+  }
+
+  :global(.lyric-stanza.active) {
+    background: linear-gradient(135deg, rgba(158, 67, 50, 0.24), rgba(217, 155, 82, 0.12));
+    border-color: var(--accent);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  :global(.stanza-time-tag) {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    opacity: 0.65;
+  }
+
+  :global(.lyric-stanza.active .stanza-time-tag) {
+    color: var(--accent-warm);
+    opacity: 1;
+  }
+
+  :global(.lyric-line) {
+    font-family: var(--font-display);
+    font-size: calc(1.12rem * var(--lyric-scale, 1));
+    line-height: 1.68;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+  }
+
+  :global(.lyric-stanza.active .lyric-line) {
+    color: #fff6ea;
+    font-weight: 500;
+  }
+
+  .lyrics-footer-nav {
+    margin-top: 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-lyric-step {
+    background: rgba(42, 31, 22, 0.85);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .btn-lyric-step:hover {
+    border-color: var(--accent);
+  }
+
+  .lyric-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* GATEFOLD & STUDIO PANELS */
+  .gatefold-scroll,
+  .studio-scroll {
+    padding: 1.6rem 1.75rem;
+  }
+
+  .section-eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 0.45rem;
+  }
+
+  .epigraph-card {
+    background: rgba(243, 234, 216, 0.06);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 1.35rem 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .epigraph-quote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.18rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .gatefold-two-col {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 860px) {
+    .gatefold-two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .backcover-essay h3,
+  .studio-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--accent-warm);
+    margin-bottom: 0.75rem;
+  }
+
+  .backcover-essay p {
+    font-size: 0.92rem;
+    line-height: 1.68;
+    color: var(--text-secondary);
+    margin-bottom: 0.9rem;
+  }
+
+  .specs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    background: rgba(20, 15, 11, 0.55);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .specs-list div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+    border-bottom: 1px dashed rgba(217, 155, 82, 0.12);
+    padding-bottom: 0.4rem;
+  }
+
+  .specs-list dt {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  .specs-list dd {
+    color: var(--text-main);
+    text-align: right;
+    font-weight: 500;
+  }
+
+  .dedication-box {
+    margin-top: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    background: rgba(158, 67, 50, 0.16);
+    border: 1px solid rgba(158, 67, 50, 0.4);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .prod-line {
+    font-weight: 600;
+    color: var(--accent-warm);
+    margin-bottom: 0.35rem;
+  }
+
+  .ded-line {
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
+  .btn-download-booklet-full {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #8c3b2b, #b57b3a);
+    color: #fff6ea;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.84rem;
+  }
+
+  .studio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 860px) {
+    .studio-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .studio-card {
+    background: rgba(20, 15, 11, 0.55);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.2rem;
+  }
+
+  .studio-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .btn-copy-chapters {
+    background: rgba(217, 155, 82, 0.18);
+    border: 1px solid var(--accent);
+    color: var(--accent-warm);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.28rem 0.65rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .studio-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    line-height: 1.45;
+  }
+
+  .chapters-pre {
+    background: #0e0a08;
+    border: 1px solid var(--border-subtle);
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.65;
+    color: var(--accent-warm);
+    overflow-x: auto;
+  }
+
+  .pipeline-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: var(--text-secondary);
+  }
+
+  .pipeline-list strong {
+    color: var(--accent-warm);
+    display: block;
+  }
+
+  .pipeline-list a {
+    color: var(--accent);
+  }
+
+  .studio-links-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .studio-pill-link {
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    background: rgba(217, 155, 82, 0.14);
+    border: 1px solid var(--border-subtle);
+    color: var(--accent-warm);
+    text-decoration: none;
+    font-size: 0.76rem;
+    font-family: var(--font-mono);
+  }
+
+  /* BOTTOM HI-FI DECK */
+  .hifi-deck {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 84px;
+    background: rgba(16, 12, 9, 0.95);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border-strong);
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 90;
+    gap: 1rem;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.65);
+  }
+
+  @media (max-width: 900px) {
+    .hifi-deck {
+      grid-template-columns: 1fr 1.4fr;
+      height: auto;
+      padding: 0.6rem 1rem;
+    }
+    .deck-right-controls {
+      display: none !important;
+    }
+  }
+
+  .deck-now-playing {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 0;
+  }
+
+  .deck-thumb {
+    width: 54px;
+    height: 54px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid var(--border-strong);
+  }
+
+  .deck-track-meta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .deck-side-line {
+    display: flex;
+    gap: 0.35rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .deck-side-pill,
+  .deck-bpm-pill {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    padding: 0.06rem 0.4rem;
+    border-radius: 4px;
+    background: #8c3b2b;
+    color: #fff;
+  }
+
+  .deck-side-pill[data-side='B'] {
+    background: #2d5a4c;
+  }
+
+  .deck-bpm-pill {
+    background: rgba(217, 155, 82, 0.18);
+    color: var(--accent-warm);
+  }
+
+  .deck-track-title {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .deck-track-style {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .deck-transport-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    max-width: 620px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .transport-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .deck-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    padding: 0.35rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .deck-btn:hover {
+    color: var(--text-main);
+    border-color: var(--border-subtle);
+  }
+
+  .deck-btn-side {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .deck-btn-play {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #160f0a;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(217, 155, 82, 0.4);
+    transition: transform 0.15s ease;
+  }
+
+  .deck-btn-play:hover {
+    transform: scale(1.06);
+    background: var(--accent-warm);
+  }
+
+  .deck-scrubber-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+  }
+
+  .time-readout {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    min-width: 38px;
+  }
+
+  .scrubber-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .seek-slider,
+  .volume-slider {
+    width: 100%;
+    accent-color: var(--accent);
+    cursor: pointer;
+    height: 5px;
+  }
+
+  .deck-right-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .auto-flip-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.73rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .auto-flip-toggle input {
+    accent-color: var(--accent);
+  }
+
+  .volume-group {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: 105px;
+    color: var(--text-muted);
+  }
+</style>

@@ -1,0 +1,25 @@
+# Dependencies & Build
+node_modules/
+dist/
+.astro/
+
+# OS & Editor
+.DS_Store
+*.log
+.env
+.env.*
+
+# Heavy Local Audio/Video Masters & Duplicate Raw Copies
+# (audio_original/ is tracked and build-album-json.mjs populates public/lps/*/audio/ automatically)
+lps/*/master/
+lps/*/raw/
+lps/*/video/*.mp4
+lps/*/video/ffconcat.txt
+public/lps/*/audio/
+
+# LaTeX Auxiliary Files
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz

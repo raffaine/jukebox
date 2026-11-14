@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import JukeboxRoom from '../components/JukeboxRoom.astro';
+import { getAllAlbums } from '../lib/catalog';
+
+const albums = getAllAlbums();
+const featuredAlbum = albums[0];
+---
+
+<Layout
+  title={featuredAlbum ? `${featuredAlbum.title} — Jukebox Listening Room` : 'Jukebox — Sala de Audição'}
+  description={featuredAlbum ? `${featuredAlbum.subtitle} · ${featuredAlbum.genre}` : 'Jukebox'}
+>
+  {
+    featuredAlbum ? (
+      <JukeboxRoom album={featuredAlbum} allAlbums={albums} />
+    ) : (
+      <div style="padding: 4rem; text-align: center;">
+        <h1>Nenhum LP encontrado em lps/</h1>
+        <p>Execute <code>npm run album:json</code> para consolidar seu primeiro disco.</p>
+      </div>
+    )
+  }
+</Layout>

@@ -1,0 +1,1124 @@
+{
+  "jukeboxTitle": "Jukebox — Sala de Audição",
+  "jukeboxSubtitle": "Acervo de LPs Autorais & Encartes Interativos",
+  "albums": [
+    {
+      "id": "gravetos-no-escuro",
+      "slug": "gravetos-no-escuro",
+      "title": "Gravetos no Escuro",
+      "subtitle": "LP Conceitual — 9 Faixas",
+      "artist": "Sintropia",
+      "year": 2026,
+      "genre": "MPB / Samba-Canção / Samba-Rock-Groove",
+      "format": "LP Conceitual (Vinil 12\" & Edição Digital)",
+      "license": "CC BY-SA 4.0",
+      "coverUrl": "/lps/gravetos-no-escuro/cover.jpg",
+      "storeCoverFile": "booklet/cover-3000x3000.jpg",
+      "bookletPdfUrl": "/lps/gravetos-no-escuro/encarte-gravetos-no-escuro.pdf",
+      "palette": {
+        "bgPrimary": "#110d0a",
+        "bgSecondary": "#1c1510",
+        "accent": "#d99b52",
+        "accentWarm": "#e6b87d",
+        "textMain": "#f2e6d5",
+        "textMuted": "#a8947e",
+        "labelSideA": "#8c3b2b",
+        "labelSideB": "#2d5a4c"
+      },
+      "epigraph": "“Não pedi licença para entrar na sala, nem recibo pelo que perdi no caminho. Juntei o que deu: três gravetos, duas âncoras no olhar e um bando na memória. Enquanto houver lenha e compasso, o escuro é só parte da estrada.”",
+      "backCoverText": [
+        "Há solidões que visitam; há outras que fundam a casa. Este disco nasceu no escuro de um quarto onde o relógio pesa mais que o ar, feito por quem aprendeu cedo a erguer abrigo com o que sobrou no chão.",
+        "No Lado A, o ferro frio: a infância rala, a armadura cínica da rua, o salão onde não fomos chamados, a vitrine impagável e o silêncio brutal de ver quem se ama partir sem sair do lugar. Aqui não há enfeite — o ritmo bate seco porque a dor também tem compasso.",
+        "Mas ninguém junta gravetos por vocação ao frio; junta-se porque a madeira seca ainda guarda fogo. Quando o disco vira para o Lado B, entram o passo pequeno na sala, a memória viva da mesa dividida e o suor da cozinha batucando contra o isolamento. Não é promessa de cura mágica nem final de vitrine. É o relato de quem segue de sentinela, sabendo distinguir o peso de uma tumba da travessia de um túnel."
+      ],
+      "credits": {
+        "production": "Produzido na fronteira entre o silêncio do quarto e o barulho da cozinha.",
+        "dedication": "Dedicado às âncoras que iluminam a sala, à memória das mesas compartilhadas e a quem ainda dorme longe, esperando o caminho de volta.",
+        "masteringSpec": "loudnorm=I=-14:TP=-1.5:LRA=11 (WAV 24-bit/44.1kHz + FLAC + MP3 320kbps)"
+      },
+      "sides": {
+        "A": {
+          "id": "A",
+          "title": "O Peso e a Máscara",
+          "subtitle": "Faixas 01 a 05",
+          "description": "O ferro frio: a infância rala, a armadura cínica da rua, o salão onde não fomos chamados, a vitrine impagável e o silêncio brutal de ver quem se ama partir sem sair do lugar.",
+          "durationSeconds": 876.28,
+          "durationFormatted": "14:36",
+          "trackNumbers": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "turnPauseSeconds": 3.5
+        },
+        "B": {
+          "id": "B",
+          "title": "A Fagulha e a Travessia",
+          "subtitle": "Faixas 06 a 09",
+          "description": "A madeira seca ainda guarda fogo: o passo pequeno na sala, a memória viva da mesa dividida e o suor da cozinha batucando contra o isolamento.",
+          "durationSeconds": 724.32,
+          "durationFormatted": "12:04",
+          "trackNumbers": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "turnPauseSeconds": 0
+        }
+      },
+      "totalDurationSeconds": 1600.6,
+      "totalDurationFormatted": "26:41",
+      "tracks": [
+        {
+          "number": 1,
+          "numberStr": "01",
+          "slug": "01-heranca-de-sal",
+          "title": "Herança de Sal",
+          "subtitle": null,
+          "fullTitle": "Herança de Sal",
+          "side": "A",
+          "style": "MPB / Samba-Canção",
+          "bpm": 68,
+          "durationSeconds": 179.069,
+          "durationFormatted": "02:59",
+          "pauseAfterSeconds": 0,
+          "linerNote": "O ponto zero. Violão de nylon, contrabaixo e a constatação nua de que certas ausências vêm antes mesmo do próprio nome.",
+          "audioUrl": "/lps/gravetos-no-escuro/audio/01-heranca-de-sal.mp3",
+          "rawFile": "raw/01-heranca-de-sal.mp3",
+          "masterWavFile": "master/01-heranca-de-sal.wav",
+          "masterFlacFile": "master/01-heranca-de-sal.flac",
+          "lyrics": "Nasci sozinho na beira da estrada\nSem muita história nem fado pra rir\nA infância escassa me deu quase nada\nE a dor foi a mestra pra me conduzir\nFiquei sem meu mundo perdi meu norte\nCanto baixinho o que a vida calou\nCatando gravetos driblando a sorte\nSou a exceção que o tempo esqueceu\n\nA solidão é herança sem fim\nMora no fundo e não sai de mim\nUm rio de sombra que quer me afogar\nE nenhum afeto consegue secar\nA canção do vazio que vem me cobrar\nO preço de nunca poder descansar\n\nO mundo sorriu e me deu um lugar\nUm novo carinho uma outra mãe\nMas logo o destino voltou a roubar\nA ponte que eu fiz para não naufragar\nE agora de novo a mesma canção\nDeitar com o medo no escuro sem fim\nO cansaço é o mastro dessa embarcação\nE a lágrima o único sal para mim\n\nA solidão é herança sem fim\nMora no fundo e não sai de mim\nUm rio de sombra que quer me afogar\nE nenhum afeto consegue secar\nA canção do vazio que vem me cobrar\nO preço de nunca poder descansar\n\nUma família sorri no meu lar\nA mesa está posta o beijo me acolhe\nMas ela se esconde no canto a espiar\nEsperando a hora em que a força me encolhe\nNão é desamor não é falta de fé\nÉ só que o vazio tem fome de mim\nDestrói minhas pontes me deixa sem pé\nE escreve em silêncio o meu próprio fim",
+          "stanzas": [
+            {
+              "index": 0,
+              "startTime": 11.6,
+              "endTime": 45.7,
+              "lines": [
+                "Nasci sozinho na beira da estrada",
+                "Sem muita história nem fado pra rir",
+                "A infância escassa me deu quase nada",
+                "E a dor foi a mestra pra me conduzir",
+                "Fiquei sem meu mundo perdi meu norte",
+                "Canto baixinho o que a vida calou",
+                "Catando gravetos driblando a sorte",
+                "Sou a exceção que o tempo esqueceu"
+              ],
+              "text": "Nasci sozinho na beira da estrada\nSem muita história nem fado pra rir\nA infância escassa me deu quase nada\nE a dor foi a mestra pra me conduzir\nFiquei sem meu mundo perdi meu norte\nCanto baixinho o que a vida calou\nCatando gravetos driblando a sorte\nSou a exceção que o tempo esqueceu"
+            },
+            {
+              "index": 1,
+              "startTime": 45.7,
+              "endTime": 71.3,
+              "lines": [
+                "A solidão é herança sem fim",
+                "Mora no fundo e não sai de mim",
+                "Um rio de sombra que quer me afogar",
+                "E nenhum afeto consegue secar",
+                "A canção do vazio que vem me cobrar",
+                "O preço de nunca poder descansar"
+              ],
+              "text": "A solidão é herança sem fim\nMora no fundo e não sai de mim\nUm rio de sombra que quer me afogar\nE nenhum afeto consegue secar\nA canção do vazio que vem me cobrar\nO preço de nunca poder descansar"
+            },
+            {
+              "index": 2,
+              "startTime": 71.3,
+              "endTime": 105.4,
+              "lines": [
+                "O mundo sorriu e me deu um lugar",
+                "Um novo carinho uma outra mãe",
+                "Mas logo o destino voltou a roubar",
+                "A ponte que eu fiz para não naufragar",
+                "E agora de novo a mesma canção",
+                "Deitar com o medo no escuro sem fim",
+                "O cansaço é o mastro dessa embarcação",
+                "E a lágrima o único sal para mim"
+              ],
+              "text": "O mundo sorriu e me deu um lugar\nUm novo carinho uma outra mãe\nMas logo o destino voltou a roubar\nA ponte que eu fiz para não naufragar\nE agora de novo a mesma canção\nDeitar com o medo no escuro sem fim\nO cansaço é o mastro dessa embarcação\nE a lágrima o único sal para mim"
+            },
+            {
+              "index": 3,
+              "startTime": 105.4,
+              "endTime": 131,
+              "lines": [
+                "A solidão é herança sem fim",
+                "Mora no fundo e não sai de mim",
+                "Um rio de sombra que quer me afogar",
+                "E nenhum afeto consegue secar",
+                "A canção do vazio que vem me cobrar",
+                "O preço de nunca poder descansar"
+              ],
+              "text": "A solidão é herança sem fim\nMora no fundo e não sai de mim\nUm rio de sombra que quer me afogar\nE nenhum afeto consegue secar\nA canção do vazio que vem me cobrar\nO preço de nunca poder descansar"
+            },
+            {
+              "index": 4,
+              "startTime": 131,
+              "endTime": 165.1,
+              "lines": [
+                "Uma família sorri no meu lar",
+                "A mesa está posta o beijo me acolhe",
+                "Mas ela se esconde no canto a espiar",
+                "Esperando a hora em que a força me encolhe",
+                "Não é desamor não é falta de fé",
+                "É só que o vazio tem fome de mim",
+                "Destrói minhas pontes me deixa sem pé",
+                "E escreve em silêncio o meu próprio fim"
+              ],
+              "text": "Uma família sorri no meu lar\nA mesa está posta o beijo me acolhe\nMas ela se esconde no canto a espiar\nEsperando a hora em que a força me encolhe\nNão é desamor não é falta de fé\nÉ só que o vazio tem fome de mim\nDestrói minhas pontes me deixa sem pé\nE escreve em silêncio o meu próprio fim"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "numberStr": "02",
+          "slug": "02-a-mascara-racha",
+          "title": "A Máscara Racha",
+          "subtitle": "Máscara no Asfalto",
+          "fullTitle": "A Máscara Racha (Máscara no Asfalto)",
+          "side": "A",
+          "style": "Funk Brasileiro & Samba-Rock",
+          "bpm": 115,
+          "durationSeconds": 179.853,
+          "durationFormatted": "03:00",
+          "pauseAfterSeconds": 0,
+          "linerNote": "A febre dos 115 BPM. Guitarra wah-wah e metais cortando a noite da juventude, onde o personagem rebelde tentava anestesiar o medo de ficar só.",
+          "audioUrl": "/lps/gravetos-no-escuro/audio/02-a-mascara-racha.mp3",
+          "rawFile": "raw/02-a-mascara-racha.mp3",
+          "masterWavFile": "master/02-a-mascara-racha.wav",
+          "masterFlacFile": "master/02-a-mascara-racha.flac",
+          "lyrics": "Cheguei na cena feito estranho no ninho\nCom a rejeição batendo forte no peito\nVesti a capa de quem anda sozinho\nUm outsider com defeito no jeito\nEra a armadura pra esconder a ferida\nA bofetada que a vida me deu\nCriei um personagem pra lida\nE o verdadeiro 'eu' se escondeu\n\nMas a máscara racha quando a noite vem cobrando\nA solidão não dorme, ela fica só espreitando\nMudei o rumo, encontrei o meu lugar\nNesse bonde que me ensina a caminhar\nMas a máscara racha quando a noite vem cobrando\nA solidão não dorme, ela fica só espreitando\n\nFui queimar a juventude no fogo do escape\nBuscando anestesia pra não ver o estrago\nAbraçando o perigo, jogando no blefe\nOuvindo discursos que me punham de lado\nOlhava pra vitrine e o preço era alto demais\nAmizades rasas, amores de plástico, sem paz\nErrei por imaturo, perdi conexões no caminho\nMas era só o medo de morrer sozinho\n\nMas a máscara racha quando a noite vem cobrando\nA solidão não dorme, ela fica só espreitando\nMudei o rumo, encontrei o meu lugar\nNesse bonde que me ensina a caminhar\nMas a máscara racha quando a noite vem cobrando\nA solidão não dorme, ela fica só espreitando\n\nO cansaço é real, mas o cansaço não me para não\nA solidão tá aqui, mas agora eu tenho o meu bando\nSamba-rock pesado pra espantar a escuridão\nE o monstro do vazio tá de longe só olhando",
+          "stanzas": [
+            {
+              "index": 0,
+              "startTime": 11.7,
+              "endTime": 50.2,
+              "lines": [
+                "Cheguei na cena feito estranho no ninho",
+                "Com a rejeição batendo forte no peito",
+                "Vesti a capa de quem anda sozinho",
+                "Um outsider com defeito no jeito",
+                "Era a armadura pra esconder a ferida",
+                "A bofetada que a vida me deu",
+                "Criei um personagem pra lida",
+                "E o verdadeiro 'eu' se escondeu"
+              ],
+              "text": "Cheguei na cena feito estranho no ninho\nCom a rejeição batendo forte no peito\nVesti a capa de quem anda sozinho\nUm outsider com defeito no jeito\nEra a armadura pra esconder a ferida\nA bofetada que a vida me deu\nCriei um personagem pra lida\nE o verdadeiro 'eu' se escondeu"
+            },
+            {
+              "index": 1,
+              "startTime": 50.2,
+              "endTime": 79.1,
+              "lines": [
+                "Mas a máscara racha quando a noite vem cobrando",
+                "A solidão não dorme, ela fica só espreitando",
+                "Mudei o rumo, encontrei o meu lugar",
+                "Nesse bonde que me ensina a caminhar",
+                "Mas a máscara racha quando a noite vem cobrando",
+                "A solidão não dorme, ela fica só espreitando"
+              ],
+              "text": "Mas a máscara racha quando a noite vem cobrando\nA solidão não dorme, ela fica só espreitando\nMudei o rumo, encontrei o meu lugar\nNesse bonde que me ensina a caminhar\nMas a máscara racha quando a noite vem cobrando\nA solidão não dorme, ela fica só espreitando"
+            },
+            {
+              "index": 2,
+              "startTime": 79.1,
+              "endTime": 117.7,
+              "lines": [
+                "Fui queimar a juventude no fogo do escape",
+                "Buscando anestesia pra não ver o estrago",
+                "Abraçando o perigo, jogando no blefe",
+                "Ouvindo discursos que me punham de lado",
+                "Olhava pra vitrine e o preço era alto demais",
+                "Amizades rasas, amores de plástico, sem paz",
+                "Errei por imaturo, perdi conexões no caminho",
+                "Mas era só o medo de morrer sozinho"
+              ],
+              "text": "Fui queimar a juventude no fogo do escape\nBuscando anestesia pra não ver o estrago\nAbraçando o perigo, jogando no blefe\nOuvindo discursos que me punham de lado\nOlhava pra vitrine e o preço era alto demais\nAmizades rasas, amores de plástico, sem paz\nErrei por imaturo, perdi conexões no caminho\nMas era só o medo de morrer sozinho"
+            },
+            {
+              "index": 3,
+              "startTime": 117.7,
+              "endTime": 146.6,
+              "lines": [
+                "Mas a máscara racha quando a noite vem cobrando",
+                "A solidão não dorme, ela fica só espreitando",
+                "Mudei o rumo, encontrei o meu lugar",
+                "Nesse bonde que me ensina a caminhar",
+                "Mas a máscara racha quando a noite vem cobrando",
+                "A solidão não dorme, ela fica só espreitando"
+              ],
+              "text": "Mas a máscara racha quando a noite vem cobrando\nA solidão não dorme, ela fica só espreitando\nMudei o rumo, encontrei o meu lugar\nNesse bonde que me ensina a caminhar\nMas a máscara racha quando a noite vem cobrando\nA solidão não dorme, ela fica só espreitando"
+            },
+            {
+              "index": 4,
+              "startTime": 146.6,
+              "endTime": 165.9,
+              "lines": [
+                "O cansaço é real, mas o cansaço não me para não",
+                "A solidão tá aqui, mas agora eu tenho o meu bando",
+                "Samba-rock pesado pra espantar a escuridão",
+                "E o monstro do vazio tá de longe só olhando"
+              ],
+              "text": "O cansaço é real, mas o cansaço não me para não\nA solidão tá aqui, mas agora eu tenho o meu bando\nSamba-rock pesado pra espantar a escuridão\nE o monstro do vazio tá de longe só olhando"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "numberStr": "03",
+          "slug": "03-o-intruso-de-terno",
+          "title": "O Intruso de Terno",
+          "subtitle": null,
+          "fullTitle": "O Intruso de Terno",
+          "side": "A",
+          "style": "Samba de Breque",
+          "bpm": 100,
+          "durationSeconds": 154.854,
+          "durationFormatted": "02:35",
+          "pauseAfterSeconds": 0,
+          "linerNote": "Samba de breque de sorriso torto. Quando a porta fecha na cara, o jeito é pular a janela e rir do anfitrião.",
+          "audioUrl": "/lps/gravetos-no-escuro/audio/03-o-intruso-de-terno.mp3",
+          "rawFile": "raw/03-o-intruso-de-terno.mp3",
+          "masterWavFile": "master/03-o-intruso-de-terno.wav",
+          "masterFlacFile": "master/03-o-intruso-de-terno.flac",
+          "lyrics": "Entrei sem bater a porta tava encostada\nA mesa cheia de gente a alma bem guardada\nComentei do vinho dei risada do azar\nNotei que ninguém nota quem não quer se ajustar\nO garçom me olha o anfitrião não conhece\nMas esse é o meu charme é assim que a vida floresce\nFingem que não veem mas eu tô no salão\nO intruso de terno o dono da situação\n\nAponto o dedo pro destino ele me olha com raiva\nEu sou o erro do sistema a peça que se lava\nMas não sai a mancha eu sou o risco no cristal\nQuem nasceu pra exceção não se sente mal no carnaval\nSorrio o sorriso que todo mundo prefere\nEnquanto o meu cínico interior se diverte\nVendo a vida de vocês com esse medo de cair\nEu já tô no chão meu amigo não tenho pra onde fugir\n\nÉ o dedo do meio pro que o mundo desenhou!\nEu sou o convidado que o dono não chamou!\nPode fechar a porta eu entro pela janela!\nA vida é esse circo e eu sou a atração dela!\nEu sou a intriga a piada o caos!\nDançando com o diabo sem pedir pros ancestrais!\nÉ o dedo do meio pro que o mundo desenhou!\nEu sou o convidado que o dono não chamou!\n\nMe chamam de legal que cara bom que gente fina\nMal sabem que o cínico aqui tá cortando a neblina\nDe cada abraço falso de cada tamo junto\nEu coleciono as máscaras é o meu único assunto\nA solidão ah essa aí é minha sócia fiel\nEla me dá o cinismo eu dou pra ela o troféu\nDe ser quem eu sou sem dever nada pra ninguém\nO indesejado que chegou e disse amém\n\nÉ o dedo do meio pro que o mundo desenhou!\nEu sou o convidado que o dono não chamou!\nPode fechar a porta eu entro pela janela!\nA vida é esse circo e eu sou a atração dela!\nEu sou a intriga a piada o caos!\nDançando com o diabo sem pedir pros ancestrais!\nÉ o dedo do meio pro que o mundo desenhou!\nEu sou o convidado que o dono não chamou!\n\nCadeira tá vaga? Pois é, agora eu ocupo.",
+          "stanzas": [
+            {
+              "index": 0,
+              "startTime": 10.1,
+              "endTime": 35.3,
+              "lines": [
+                "Entrei sem bater a porta tava encostada",
+                "A mesa cheia de gente a alma bem guardada",
+                "Comentei do vinho dei risada do azar",
+                "Notei que ninguém nota quem não quer se ajustar",
+                "O garçom me olha o anfitrião não conhece",
+                "Mas esse é o meu charme é assim que a vida floresce",
+                "Fingem que não veem mas eu tô no salão",
+                "O intruso de terno o dono da situação"
+              ],
+              "text": "Entrei sem bater a porta tava encostada\nA mesa cheia de gente a alma bem guardada\nComentei do vinho dei risada do azar\nNotei que ninguém nota quem não quer se ajustar\nO garçom me olha o anfitrião não conhece\nMas esse é o meu charme é assim que a vida floresce\nFingem que não veem mas eu tô no salão\nO intruso de terno o dono da situação"
+            },
+            {
+              "index": 1,
+              "startTime": 35.3,
+              "endTime": 60.5,
+              "lines": [
+                "Aponto o dedo pro destino ele me olha com raiva",
+                "Eu sou o erro do sistema a peça que se lava",
+                "Mas não sai a mancha eu sou o risco no cristal",
+                "Quem nasceu pra exceção não se sente mal no carnaval",
+                "Sorrio o sorriso que todo mundo prefere",
+                "Enquanto o meu cínico interior se diverte",
+                "Vendo a vida de vocês com esse medo de cair",
+                "Eu já tô no chão meu amigo não tenho pra onde fugir"
+              ],
+              "text": "Aponto o dedo pro destino ele me olha com raiva\nEu sou o erro do sistema a peça que se lava\nMas não sai a mancha eu sou o risco no cristal\nQuem nasceu pra exceção não se sente mal no carnaval\nSorrio o sorriso que todo mundo prefere\nEnquanto o meu cínico interior se diverte\nVendo a vida de vocês com esse medo de cair\nEu já tô no chão meu amigo não tenho pra onde fugir"
+            },
+            {
+              "index": 2,
+              "startTime": 60.5,
+              "endTime": 85.7,
+              "lines": [
+                "É o dedo do meio pro que o mundo desenhou!",
+                "Eu sou o convidado que o dono não chamou!",
+                "Pode fechar a porta eu entro pela janela!",
+                "A vida é esse circo e eu sou a atração dela!",
+                "Eu sou a intriga a piada o caos!",
+                "Dançando com o diabo sem pedir pros ancestrais!",
+                "É o dedo do meio pro que o mundo desenhou!",
+                "Eu sou o convidado que o dono não chamou!"
+              ],
+              "text": "É o dedo do meio pro que o mundo desenhou!\nEu sou o convidado que o dono não chamou!\nPode fechar a porta eu entro pela janela!\nA vida é esse circo e eu sou a atração dela!\nEu sou a intriga a piada o caos!\nDançando com o diabo sem pedir pros ancestrais!\nÉ o dedo do meio pro que o mundo desenhou!\nEu sou o convidado que o dono não chamou!"
+            },
+            {
+              "index": 3,
+              "startTime": 85.7,
+              "endTime": 110.9,
+              "lines": [
+                "Me chamam de legal que cara bom que gente fina",
+                "Mal sabem que o cínico aqui tá cortando a neblina",
+                "De cada abraço falso de cada tamo junto",
+                "Eu coleciono as máscaras é o meu único assunto",
+                "A solidão ah essa aí é minha sócia fiel",
+                "Ela me dá o cinismo eu dou pra ela o troféu",
+                "De ser quem eu sou sem dever nada pra ninguém",
+                "O indesejado que chegou e disse amém"
+              ],
+              "text": "Me chamam de legal que cara bom que gente fina\nMal sabem que o cínico aqui tá cortando a neblina\nDe cada abraço falso de cada tamo junto\nEu coleciono as máscaras é o meu único assunto\nA solidão ah essa aí é minha sócia fiel\nEla me dá o cinismo eu dou pra ela o troféu\nDe ser quem eu sou sem dever nada pra ninguém\nO indesejado que chegou e disse amém"
+            },
+            {
+              "index": 4,
+              "startTime": 110.9,
+              "endTime": 136.2,
+              "lines": [
+                "É o dedo do meio pro que o mundo desenhou!",
+                "Eu sou o convidado que o dono não chamou!",
+                "Pode fechar a porta eu entro pela janela!",
+                "A vida é esse circo e eu sou a atração dela!",
+                "Eu sou a intriga a piada o caos!",
+                "Dançando com o diabo sem pedir pros ancestrais!",
+                "É o dedo do meio pro que o mundo desenhou!",
+                "Eu sou o convidado que o dono não chamou!"
+              ],
+              "text": "É o dedo do meio pro que o mundo desenhou!\nEu sou o convidado que o dono não chamou!\nPode fechar a porta eu entro pela janela!\nA vida é esse circo e eu sou a atração dela!\nEu sou a intriga a piada o caos!\nDançando com o diabo sem pedir pros ancestrais!\nÉ o dedo do meio pro que o mundo desenhou!\nEu sou o convidado que o dono não chamou!"
+            },
+            {
+              "index": 5,
+              "startTime": 136.2,
+              "endTime": 142.5,
+              "lines": [
+                "Cadeira tá vaga? Pois é, agora eu ocupo."
+              ],
+              "text": "Cadeira tá vaga? Pois é, agora eu ocupo."
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "numberStr": "04",
+          "slug": "04-o-saldo-nao-da",
+          "title": "O Saldo Não Dá",
+          "subtitle": null,
+          "fullTitle": "O Saldo Não Dá",
+          "side": "A",
+          "style": "Samba-Rock Melancólico",
+          "bpm": 90,
+          "durationSeconds": 181.368,
+          "durationFormatted": "03:01",
+          "pauseAfterSeconds": 0,
+          "linerNote": "Crônica de calçada em compasso menor. A vitrine acesa da cidade vendendo uma paz que banco nenhum financia.",
+          "audioUrl": "/lps/gravetos-no-escuro/audio/04-o-saldo-nao-da.mp3",
+          "rawFile": "raw/04-o-saldo-nao-da.mp3",
+          "masterWavFile": "master/04-o-saldo-nao-da.wav",
+          "masterFlacFile": "master/04-o-saldo-nao-da.flac",
+          "lyrics": "Vitrine acesa na avenida principal\nFelicidade exposta em preço irreal\nTodo mundo sorri no manequim de gesso\nEu passo na calçada e não sei o endereço\nMáscaras coladas com a pressa do dia\nVendendo a alma por pura fantasia\nOlho no espelho e o reflexo é de vidro\nUm figurante tentando algum sentido\n\nE o saldo não dá pra comprar esse azul\nO brilho da vitrine é um norte pro sul\nA felicidade é produto de prateleira\nE eu sou só o resto daquela fileira\nO preço é alto o banco não aprova\nViver desse jeito é uma eterna prova\n\nNinguém pergunta quem mora atrás do verniz\nA regra do jogo é fingir ser feliz\nO abraço é curto a conversa é trocada\nPor uma moeda que não vale nada\nEu guardo o troco dessa solidão\nEnquanto o desfile passa no meu salão\n\nE o saldo não dá pra comprar esse azul\nO brilho da vitrine é um norte pro sul\nA felicidade é produto de prateleira\nE eu sou só o resto daquela fileira\nO preço é alto o banco não aprova\nViver desse jeito é uma eterna prova\n\nNinguém tem o preço\nNinguém tem o saldo\nSó a gente na rua sem o brilho\nA luz apaga",
+          "stanzas": [
+            {
+              "index": 0,
+              "startTime": 11.8,
+              "endTime": 53.3,
+              "lines": [
+                "Vitrine acesa na avenida principal",
+                "Felicidade exposta em preço irreal",
+                "Todo mundo sorri no manequim de gesso",
+                "Eu passo na calçada e não sei o endereço",
+                "Máscaras coladas com a pressa do dia",
+                "Vendendo a alma por pura fantasia",
+                "Olho no espelho e o reflexo é de vidro",
+                "Um figurante tentando algum sentido"
+              ],
+              "text": "Vitrine acesa na avenida principal\nFelicidade exposta em preço irreal\nTodo mundo sorri no manequim de gesso\nEu passo na calçada e não sei o endereço\nMáscaras coladas com a pressa do dia\nVendendo a alma por pura fantasia\nOlho no espelho e o reflexo é de vidro\nUm figurante tentando algum sentido"
+            },
+            {
+              "index": 1,
+              "startTime": 53.3,
+              "endTime": 84.4,
+              "lines": [
+                "E o saldo não dá pra comprar esse azul",
+                "O brilho da vitrine é um norte pro sul",
+                "A felicidade é produto de prateleira",
+                "E eu sou só o resto daquela fileira",
+                "O preço é alto o banco não aprova",
+                "Viver desse jeito é uma eterna prova"
+              ],
+              "text": "E o saldo não dá pra comprar esse azul\nO brilho da vitrine é um norte pro sul\nA felicidade é produto de prateleira\nE eu sou só o resto daquela fileira\nO preço é alto o banco não aprova\nViver desse jeito é uma eterna prova"
+            },
+            {
+              "index": 2,
+              "startTime": 84.4,
+              "endTime": 115.5,
+              "lines": [
+                "Ninguém pergunta quem mora atrás do verniz",
+                "A regra do jogo é fingir ser feliz",
+                "O abraço é curto a conversa é trocada",
+                "Por uma moeda que não vale nada",
+                "Eu guardo o troco dessa solidão",
+                "Enquanto o desfile passa no meu salão"
+              ],
+              "text": "Ninguém pergunta quem mora atrás do verniz\nA regra do jogo é fingir ser feliz\nO abraço é curto a conversa é trocada\nPor uma moeda que não vale nada\nEu guardo o troco dessa solidão\nEnquanto o desfile passa no meu salão"
+            },
+            {
+              "index": 3,
+              "startTime": 115.5,
+              "endTime": 146.6,
+              "lines": [
+                "E o saldo não dá pra comprar esse azul",
+                "O brilho da vitrine é um norte pro sul",
+                "A felicidade é produto de prateleira",
+                "E eu sou só o resto daquela fileira",
+                "O preço é alto o banco não aprova",
+                "Viver desse jeito é uma eterna prova"
+              ],
+              "text": "E o saldo não dá pra comprar esse azul\nO brilho da vitrine é um norte pro sul\nA felicidade é produto de prateleira\nE eu sou só o resto daquela fileira\nO preço é alto o banco não aprova\nViver desse jeito é uma eterna prova"
+            },
+            {
+              "index": 4,
+              "startTime": 146.6,
+              "endTime": 167.4,
+              "lines": [
+                "Ninguém tem o preço",
+                "Ninguém tem o saldo",
+                "Só a gente na rua sem o brilho",
+                "A luz apaga"
+              ],
+              "text": "Ninguém tem o preço\nNinguém tem o saldo\nSó a gente na rua sem o brilho\nA luz apaga"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "numberStr": "05",
+          "slug": "05-partiu-sem-sair-do-lugar",
+          "title": "Partiu Sem Sair do Lugar",
+          "subtitle": null,
+          "fullTitle": "Partiu Sem Sair do Lugar",
+          "side": "A",
+          "style": "Dark Samba-Rock",
+          "bpm": 80,
+          "durationSeconds": 181.133,
+          "durationFormatted": "03:01",
+          "pauseAfterSeconds": 3.5,
+          "linerNote": "O fundo do porão. O samba-rock desacelera e pesa como chumbo diante do luto invisível dentro da própria casa.",
+          "audioUrl": "/lps/gravetos-no-escuro/audio/05-partiu-sem-sair-do-lugar.mp3",
+          "rawFile": "raw/05-partiu-sem-sair-do-lugar.mp3",
+          "masterWavFile": "master/05-partiu-sem-sair-do-lugar.wav",
+          "masterFlacFile": "master/05-partiu-sem-sair-do-lugar.flac",
+          "lyrics": "O relógio na parede bate como um martelo\nNesse quarto frio o silêncio é meu castelo\nTudo que eu toco parece que se desfaz\nMinha mãe se foi e o meu pai já não faz paz\nAgora você deitada tão perto de mim\nMas o teu olhar tá longe num abismo sem fim\nTeu corpo tá aqui mas tua alma evaporou\nE o vazio que eu tanto temia me alcançou\n\n(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!\nA minha esposa partiu sem sair do lugar!\nE esse vazio maldito veio me devorar!\n(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!\n\nLembrei do garoto catando graveto no chão\nTentando erguer uma vida sem chão nem irmão\nO mundo sorriu e me deu uma segunda mãe, sim\nMas o destino é um carrasco e a levou de mim\nAí veio você e achei que a ponte estivesse de pé\nConstruí uma família com o resto da minha fé\nMas a solidão tava só esperando o momento ruim\nPra me arrastar de volta e me afastar de ti enfim\n\n(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!\nA minha esposa partiu sem sair do lugar!\nE esse vazio maldito veio me devorar!\n(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!\n\nOlho pro espelho e não sei quem tá lá de verdade\nSou o fantasma que vaga nessa imensa cidade\nNão tem remédio que cure a dor de me ver sozinho\nPerdido e quebrado no meio do meu próprio caminho\n\n(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!\nA minha esposa partiu sem sair do lugar!\nE esse vazio maldito veio me devorar!\n(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!\n\nE assim eu sigo... no escuro do meu ser...\nCansado de lutar e cansado de sofrer...\nA solidão venceu... não há mais o que falar...\nSó resta esse vazio... pra me devorar.",
+          "stanzas": [
+            {
+              "index": 0,
+              "startTime": 11.8,
+              "endTime": 41.4,
+              "lines": [
+                "O relógio na parede bate como um martelo",
+                "Nesse quarto frio o silêncio é meu castelo",
+                "Tudo que eu toco parece que se desfaz",
+                "Minha mãe se foi e o meu pai já não faz paz",
+                "Agora você deitada tão perto de mim",
+                "Mas o teu olhar tá longe num abismo sem fim",
+                "Teu corpo tá aqui mas tua alma evaporou",
+                "E o vazio que eu tanto temia me alcançou"
+              ],
+              "text": "O relógio na parede bate como um martelo\nNesse quarto frio o silêncio é meu castelo\nTudo que eu toco parece que se desfaz\nMinha mãe se foi e o meu pai já não faz paz\nAgora você deitada tão perto de mim\nMas o teu olhar tá longe num abismo sem fim\nTeu corpo tá aqui mas tua alma evaporou\nE o vazio que eu tanto temia me alcançou"
+            },
+            {
+              "index": 1,
+              "startTime": 41.4,
+              "endTime": 63.6,
+              "lines": [
+                "(Essa solidão!) que me puxa pro fundo!",
+                "(Tudo que eu amo!) eu destruo no mundo!",
+                "A minha esposa partiu sem sair do lugar!",
+                "E esse vazio maldito veio me devorar!",
+                "(Essa solidão!) que me puxa pro fundo!",
+                "(Tudo que eu amo!) eu destruo no mundo!"
+              ],
+              "text": "(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!\nA minha esposa partiu sem sair do lugar!\nE esse vazio maldito veio me devorar!\n(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!"
+            },
+            {
+              "index": 2,
+              "startTime": 63.6,
+              "endTime": 93.2,
+              "lines": [
+                "Lembrei do garoto catando graveto no chão",
+                "Tentando erguer uma vida sem chão nem irmão",
+                "O mundo sorriu e me deu uma segunda mãe, sim",
+                "Mas o destino é um carrasco e a levou de mim",
+                "Aí veio você e achei que a ponte estivesse de pé",
+                "Construí uma família com o resto da minha fé",
+                "Mas a solidão tava só esperando o momento ruim",
+                "Pra me arrastar de volta e me afastar de ti enfim"
+              ],
+              "text": "Lembrei do garoto catando graveto no chão\nTentando erguer uma vida sem chão nem irmão\nO mundo sorriu e me deu uma segunda mãe, sim\nMas o destino é um carrasco e a levou de mim\nAí veio você e achei que a ponte estivesse de pé\nConstruí uma família com o resto da minha fé\nMas a solidão tava só esperando o momento ruim\nPra me arrastar de volta e me afastar de ti enfim"
+            },
+            {
+              "index": 3,
+              "startTime": 93.2,
+              "endTime": 115.3,
+              "lines": [
+                "(Essa solidão!) que me puxa pro fundo!",
+                "(Tudo que eu amo!) eu destruo no mundo!",
+                "A minha esposa partiu sem sair do lugar!",
+                "E esse vazio maldito veio me devorar!",
+                "(Essa solidão!) que me puxa pro fundo!",
+                "(Tudo que eu amo!) eu destruo no mundo!"
+              ],
+              "text": "(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!\nA minha esposa partiu sem sair do lugar!\nE esse vazio maldito veio me devorar!\n(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!"
+            },
+            {
+              "index": 4,
+              "startTime": 115.3,
+              "endTime": 130.1,
+              "lines": [
+                "Olho pro espelho e não sei quem tá lá de verdade",
+                "Sou o fantasma que vaga nessa imensa cidade",
+                "Não tem remédio que cure a dor de me ver sozinho",
+                "Perdido e quebrado no meio do meu próprio caminho"
+              ],
+              "text": "Olho pro espelho e não sei quem tá lá de verdade\nSou o fantasma que vaga nessa imensa cidade\nNão tem remédio que cure a dor de me ver sozinho\nPerdido e quebrado no meio do meu próprio caminho"
+            },
+            {
+              "index": 5,
+              "startTime": 130.1,
+              "endTime": 152.3,
+              "lines": [
+                "(Essa solidão!) que me puxa pro fundo!",
+                "(Tudo que eu amo!) eu destruo no mundo!",
+                "A minha esposa partiu sem sair do lugar!",
+                "E esse vazio maldito veio me devorar!",
+                "(Essa solidão!) que me puxa pro fundo!",
+                "(Tudo que eu amo!) eu destruo no mundo!"
+              ],
+              "text": "(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!\nA minha esposa partiu sem sair do lugar!\nE esse vazio maldito veio me devorar!\n(Essa solidão!) que me puxa pro fundo!\n(Tudo que eu amo!) eu destruo no mundo!"
+            },
+            {
+              "index": 6,
+              "startTime": 152.3,
+              "endTime": 167.1,
+              "lines": [
+                "E assim eu sigo... no escuro do meu ser...",
+                "Cansado de lutar e cansado de sofrer...",
+                "A solidão venceu... não há mais o que falar...",
+                "Só resta esse vazio... pra me devorar."
+              ],
+              "text": "E assim eu sigo... no escuro do meu ser...\nCansado de lutar e cansado de sofrer...\nA solidão venceu... não há mais o que falar...\nSó resta esse vazio... pra me devorar."
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "numberStr": "06",
+          "slug": "06-ancora-no-olhar",
+          "title": "Âncora no Olhar",
+          "subtitle": null,
+          "fullTitle": "Âncora no Olhar",
+          "side": "B",
+          "style": "Samba Acústico / MPB",
+          "bpm": 75,
+          "durationSeconds": 180.82,
+          "durationFormatted": "03:01",
+          "pauseAfterSeconds": 0,
+          "linerNote": "A agulha pousa no respiro. O compasso manso de quem descobre nos filhos o motivo diário para não naufragar.",
+          "audioUrl": "/lps/gravetos-no-escuro/audio/06-ancora-no-olhar.mp3",
+          "rawFile": "raw/06-ancora-no-olhar.mp3",
+          "masterWavFile": "master/06-ancora-no-olhar.wav",
+          "masterFlacFile": "master/06-ancora-no-olhar.flac",
+          "lyrics": "A solidão que eu carreguei na bagagem\nHoje descansa ao ver vocês crescerem\nO tempo corre e muda a paisagem\nMas o amor não deixa a esperança morrer\n\nE se o futuro for sopro e incerteza\nEu faço abrigo na força do olhar\nMeus filhos são a cura da tristeza\nO porto seguro onde eu vou ancorar\n\nTropeço e erro tentando ser ponte\nO medo às vezes me rouba a canção\nMas vejo o sol que renasce no horizonte\nE encontro a paz no bater do coração\n\nE se o futuro for sopro e incerteza\nEu faço abrigo na força do olhar\nMeus filhos são a cura da tristeza\nO porto seguro onde eu vou ancorar\n\nE se o futuro for sopro e incerteza\nEu faço abrigo na força do olhar\nMeus filhos são a cura da tristeza\nO porto seguro onde eu vou ancorar\n\nMeus filhos... o meu melhor amanhã\nA cura que a vida me deu",
+          "stanzas": [
+            {
+              "index": 0,
+              "startTime": 11.8,
+              "endTime": 39.9,
+              "lines": [
+                "A solidão que eu carreguei na bagagem",
+                "Hoje descansa ao ver vocês crescerem",
+                "O tempo corre e muda a paisagem",
+                "Mas o amor não deixa a esperança morrer"
+              ],
+              "text": "A solidão que eu carreguei na bagagem\nHoje descansa ao ver vocês crescerem\nO tempo corre e muda a paisagem\nMas o amor não deixa a esperança morrer"
+            },
+            {
+              "index": 1,
+              "startTime": 39.9,
+              "endTime": 68.1,
+              "lines": [
+                "E se o futuro for sopro e incerteza",
+                "Eu faço abrigo na força do olhar",
+                "Meus filhos são a cura da tristeza",
+                "O porto seguro onde eu vou ancorar"
+              ],
+              "text": "E se o futuro for sopro e incerteza\nEu faço abrigo na força do olhar\nMeus filhos são a cura da tristeza\nO porto seguro onde eu vou ancorar"
+            },
+            {
+              "index": 2,
+              "startTime": 68.1,
+              "endTime": 96.3,
+              "lines": [
+                "Tropeço e erro tentando ser ponte",
+                "O medo às vezes me rouba a canção",
+                "Mas vejo o sol que renasce no horizonte",
+                "E encontro a paz no bater do coração"
+              ],
+              "text": "Tropeço e erro tentando ser ponte\nO medo às vezes me rouba a canção\nMas vejo o sol que renasce no horizonte\nE encontro a paz no bater do coração"
+            },
+            {
+              "index": 3,
+              "startTime": 96.3,
+              "endTime": 124.5,
+              "lines": [
+                "E se o futuro for sopro e incerteza",
+                "Eu faço abrigo na força do olhar",
+                "Meus filhos são a cura da tristeza",
+                "O porto seguro onde eu vou ancorar"
+              ],
+              "text": "E se o futuro for sopro e incerteza\nEu faço abrigo na força do olhar\nMeus filhos são a cura da tristeza\nO porto seguro onde eu vou ancorar"
+            },
+            {
+              "index": 4,
+              "startTime": 124.5,
+              "endTime": 152.7,
+              "lines": [
+                "E se o futuro for sopro e incerteza",
+                "Eu faço abrigo na força do olhar",
+                "Meus filhos são a cura da tristeza",
+                "O porto seguro onde eu vou ancorar"
+              ],
+              "text": "E se o futuro for sopro e incerteza\nEu faço abrigo na força do olhar\nMeus filhos são a cura da tristeza\nO porto seguro onde eu vou ancorar"
+            },
+            {
+              "index": 5,
+              "startTime": 152.7,
+              "endTime": 166.8,
+              "lines": [
+                "Meus filhos... o meu melhor amanhã",
+                "A cura que a vida me deu"
+              ],
+              "text": "Meus filhos... o meu melhor amanhã\nA cura que a vida me deu"
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "numberStr": "07",
+          "slug": "07-a-ponte-que-nao-quebra",
+          "title": "A Ponte Que Não Quebra",
+          "subtitle": null,
+          "fullTitle": "A Ponte Que Não Quebra",
+          "side": "B",
+          "style": "Samba-Rock Soul",
+          "bpm": 100,
+          "durationSeconds": 174.759,
+          "durationFormatted": "02:55",
+          "pauseAfterSeconds": 0,
+          "linerNote": "O sol atravessa a vidraça. Os metais voltam quentes para celebrar a única estrutura que o vazio não conseguiu corroer.",
+          "audioUrl": "/lps/gravetos-no-escuro/audio/07-a-ponte-que-nao-quebra.mp3",
+          "rawFile": "raw/07-a-ponte-que-nao-quebra.mp3",
+          "masterWavFile": "master/07-a-ponte-que-nao-quebra.wav",
+          "masterFlacFile": "master/07-a-ponte-que-nao-quebra.flac",
+          "lyrics": "Nesse balanço eu sigo cultivando o amanhã.\nOlha esses sorrisos bicho, é onde mora a minha cura.\n\nO sol bate na vidraça da sala\nVarrendo a poeira de tanto esperar\nPassos pequenos que quebram o silêncio\nTrazendo o barulho que me faz cansar\nCultivo esse afeto no peito todo dia\nMesmo sabendo que a dor não vai sarar\n\nTem tropeço no caminho eu sei bem\nO medo do amanhã às vezes me consome\nMas quando o abraço me aperta no fim\nA solidão recua e até esquece o nome\n\nLuz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar\nLuz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar\n\nA marca no espelho me mostra o tempo\nE as rugas que a noite teimou em traçar\nMas vejo no brilho daqueles olhinhos\nO mundo inteiro voltando pro lugar\nÉ uma semente que eu planto rindo e chorando\nEsperando o amanhã me abençoar\n\nTem tropeço no caminho eu sei bem\nO medo do amanhã às vezes me consome\nMas quando o abraço me aperta no fim\nA solidão recua e até esquece o nome\n\nLuz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar\nLuz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar\n\nMesmo quando o céu parece cinza e sem fim\nEu sei que tem um porto seguro pra mim\nEles são a semente do que eu quero ser\nO motivo maior de não me render\n\nLuz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar\nLuz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar\n\nCultivando todo dia... sem pressa.\nLuz do meu dia... meu porto seguro.\nO amanhã já chegou, meu amor.",
+          "stanzas": [
+            {
+              "index": 0,
+              "startTime": 11.4,
+              "endTime": 17,
+              "lines": [
+                "Nesse balanço eu sigo cultivando o amanhã.",
+                "Olha esses sorrisos bicho, é onde mora a minha cura."
+              ],
+              "text": "Nesse balanço eu sigo cultivando o amanhã.\nOlha esses sorrisos bicho, é onde mora a minha cura."
+            },
+            {
+              "index": 1,
+              "startTime": 17,
+              "endTime": 33.9,
+              "lines": [
+                "O sol bate na vidraça da sala",
+                "Varrendo a poeira de tanto esperar",
+                "Passos pequenos que quebram o silêncio",
+                "Trazendo o barulho que me faz cansar",
+                "Cultivo esse afeto no peito todo dia",
+                "Mesmo sabendo que a dor não vai sarar"
+              ],
+              "text": "O sol bate na vidraça da sala\nVarrendo a poeira de tanto esperar\nPassos pequenos que quebram o silêncio\nTrazendo o barulho que me faz cansar\nCultivo esse afeto no peito todo dia\nMesmo sabendo que a dor não vai sarar"
+            },
+            {
+              "index": 2,
+              "startTime": 33.9,
+              "endTime": 45.2,
+              "lines": [
+                "Tem tropeço no caminho eu sei bem",
+                "O medo do amanhã às vezes me consome",
+                "Mas quando o abraço me aperta no fim",
+                "A solidão recua e até esquece o nome"
+              ],
+              "text": "Tem tropeço no caminho eu sei bem\nO medo do amanhã às vezes me consome\nMas quando o abraço me aperta no fim\nA solidão recua e até esquece o nome"
+            },
+            {
+              "index": 3,
+              "startTime": 45.2,
+              "endTime": 67.7,
+              "lines": [
+                "Luz do meu dia cura essa dor",
+                "Sopro de esperança no meu caminhar",
+                "Eles são o rumo o meu novo calor",
+                "A única ponte que não vai quebrar",
+                "Luz do meu dia cura essa dor",
+                "Sopro de esperança no meu caminhar",
+                "Eles são o rumo o meu novo calor",
+                "A única ponte que não vai quebrar"
+              ],
+              "text": "Luz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar\nLuz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar"
+            },
+            {
+              "index": 4,
+              "startTime": 67.7,
+              "endTime": 84.7,
+              "lines": [
+                "A marca no espelho me mostra o tempo",
+                "E as rugas que a noite teimou em traçar",
+                "Mas vejo no brilho daqueles olhinhos",
+                "O mundo inteiro voltando pro lugar",
+                "É uma semente que eu planto rindo e chorando",
+                "Esperando o amanhã me abençoar"
+              ],
+              "text": "A marca no espelho me mostra o tempo\nE as rugas que a noite teimou em traçar\nMas vejo no brilho daqueles olhinhos\nO mundo inteiro voltando pro lugar\nÉ uma semente que eu planto rindo e chorando\nEsperando o amanhã me abençoar"
+            },
+            {
+              "index": 5,
+              "startTime": 84.7,
+              "endTime": 95.9,
+              "lines": [
+                "Tem tropeço no caminho eu sei bem",
+                "O medo do amanhã às vezes me consome",
+                "Mas quando o abraço me aperta no fim",
+                "A solidão recua e até esquece o nome"
+              ],
+              "text": "Tem tropeço no caminho eu sei bem\nO medo do amanhã às vezes me consome\nMas quando o abraço me aperta no fim\nA solidão recua e até esquece o nome"
+            },
+            {
+              "index": 6,
+              "startTime": 95.9,
+              "endTime": 118.5,
+              "lines": [
+                "Luz do meu dia cura essa dor",
+                "Sopro de esperança no meu caminhar",
+                "Eles são o rumo o meu novo calor",
+                "A única ponte que não vai quebrar",
+                "Luz do meu dia cura essa dor",
+                "Sopro de esperança no meu caminhar",
+                "Eles são o rumo o meu novo calor",
+                "A única ponte que não vai quebrar"
+              ],
+              "text": "Luz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar\nLuz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar"
+            },
+            {
+              "index": 7,
+              "startTime": 118.5,
+              "endTime": 129.8,
+              "lines": [
+                "Mesmo quando o céu parece cinza e sem fim",
+                "Eu sei que tem um porto seguro pra mim",
+                "Eles são a semente do que eu quero ser",
+                "O motivo maior de não me render"
+              ],
+              "text": "Mesmo quando o céu parece cinza e sem fim\nEu sei que tem um porto seguro pra mim\nEles são a semente do que eu quero ser\nO motivo maior de não me render"
+            },
+            {
+              "index": 8,
+              "startTime": 129.8,
+              "endTime": 152.3,
+              "lines": [
+                "Luz do meu dia cura essa dor",
+                "Sopro de esperança no meu caminhar",
+                "Eles são o rumo o meu novo calor",
+                "A única ponte que não vai quebrar",
+                "Luz do meu dia cura essa dor",
+                "Sopro de esperança no meu caminhar",
+                "Eles são o rumo o meu novo calor",
+                "A única ponte que não vai quebrar"
+              ],
+              "text": "Luz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar\nLuz do meu dia cura essa dor\nSopro de esperança no meu caminhar\nEles são o rumo o meu novo calor\nA única ponte que não vai quebrar"
+            },
+            {
+              "index": 9,
+              "startTime": 152.3,
+              "endTime": 160.8,
+              "lines": [
+                "Cultivando todo dia... sem pressa.",
+                "Luz do meu dia... meu porto seguro.",
+                "O amanhã já chegou, meu amor."
+              ],
+              "text": "Cultivando todo dia... sem pressa.\nLuz do meu dia... meu porto seguro.\nO amanhã já chegou, meu amor."
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "numberStr": "08",
+          "slug": "08-o-nosso-altar",
+          "title": "O Nosso Altar",
+          "subtitle": null,
+          "fullTitle": "O Nosso Altar",
+          "side": "B",
+          "style": "Samba-Rock-Groove-Batuqueira",
+          "bpm": 102,
+          "durationSeconds": 184.372,
+          "durationFormatted": "03:04",
+          "pauseAfterSeconds": 0,
+          "linerNote": "Batuqueira de alma lavada. Do alojamento estudantil ao propósito de futuro: a certeza de que a autonomia só faz sentido quando há pão e canto divididos.",
+          "audioUrl": "/lps/gravetos-no-escuro/audio/08-o-nosso-altar.mp3",
+          "rawFile": "raw/08-o-nosso-altar.mp3",
+          "masterWavFile": "master/08-o-nosso-altar.wav",
+          "masterFlacFile": "master/08-o-nosso-altar.flac",
+          "lyrics": "(Cozinha pesada... Groove da alma...)\nChega mais que a história é longa!\n\nVivi a autonomia que o mundo me deu\nFora de casa o destino se ergueu\nCuidando da vida sem ter onde fiar\nMas nunca sozinho pra me amedrontar\nO alojamento era o nosso altar\nGente de todo e qualquer lugar\nDividindo o pão a canção e a dor\nUm caos perfeito que me deu calor\n\nO Coletivo abrandava o meu monstro!\nA solidão não tinha onde sentar!\nEu merecia sim esse encontro!\nNesse abraço eu pude descansar!\nO Coletivo me deu o futuro!\nA chama acesa no meio do escuro!\n\nMas a realidade é rainha e senhora\nO tempo do abrigo me botou pra fora\nE o hiper-isolamento me pôs no porão\nAcorrentado nessa solidão\nDe volta ao monstro que me quer tragar\nTentando as pontes que construí quebrar\nMas eu me lembro do que a gente quis\nDaquele propósito que me fez feliz\n\nO Coletivo abrandava o meu monstro!\nA solidão não tinha onde sentar!\nEu merecia sim esse encontro!\nNesse abraço eu pude descansar!\nO Coletivo me deu o futuro!\nA chama acesa no meio do escuro!\n\nO Coletivo abrandava o meu monstro!\nA solidão não tinha onde sentar!\nEu merecia sim esse encontro!\nNesse abraço eu pude descansar!\nO Coletivo me deu o futuro!\nA chama acesa no meio do escuro!\n\n(O Coletivo... sempre vivo...)\nA chama não se apaga. Não mesmo!",
+          "stanzas": [
+            {
+              "index": 0,
+              "startTime": 12,
+              "endTime": 20.3,
+              "lines": [
+                "(Cozinha pesada... Groove da alma...)",
+                "Chega mais que a história é longa!"
+              ],
+              "text": "(Cozinha pesada... Groove da alma...)\nChega mais que a história é longa!"
+            },
+            {
+              "index": 1,
+              "startTime": 20.3,
+              "endTime": 53.7,
+              "lines": [
+                "Vivi a autonomia que o mundo me deu",
+                "Fora de casa o destino se ergueu",
+                "Cuidando da vida sem ter onde fiar",
+                "Mas nunca sozinho pra me amedrontar",
+                "O alojamento era o nosso altar",
+                "Gente de todo e qualquer lugar",
+                "Dividindo o pão a canção e a dor",
+                "Um caos perfeito que me deu calor"
+              ],
+              "text": "Vivi a autonomia que o mundo me deu\nFora de casa o destino se ergueu\nCuidando da vida sem ter onde fiar\nMas nunca sozinho pra me amedrontar\nO alojamento era o nosso altar\nGente de todo e qualquer lugar\nDividindo o pão a canção e a dor\nUm caos perfeito que me deu calor"
+            },
+            {
+              "index": 2,
+              "startTime": 53.7,
+              "endTime": 78.7,
+              "lines": [
+                "O Coletivo abrandava o meu monstro!",
+                "A solidão não tinha onde sentar!",
+                "Eu merecia sim esse encontro!",
+                "Nesse abraço eu pude descansar!",
+                "O Coletivo me deu o futuro!",
+                "A chama acesa no meio do escuro!"
+              ],
+              "text": "O Coletivo abrandava o meu monstro!\nA solidão não tinha onde sentar!\nEu merecia sim esse encontro!\nNesse abraço eu pude descansar!\nO Coletivo me deu o futuro!\nA chama acesa no meio do escuro!"
+            },
+            {
+              "index": 3,
+              "startTime": 78.7,
+              "endTime": 112,
+              "lines": [
+                "Mas a realidade é rainha e senhora",
+                "O tempo do abrigo me botou pra fora",
+                "E o hiper-isolamento me pôs no porão",
+                "Acorrentado nessa solidão",
+                "De volta ao monstro que me quer tragar",
+                "Tentando as pontes que construí quebrar",
+                "Mas eu me lembro do que a gente quis",
+                "Daquele propósito que me fez feliz"
+              ],
+              "text": "Mas a realidade é rainha e senhora\nO tempo do abrigo me botou pra fora\nE o hiper-isolamento me pôs no porão\nAcorrentado nessa solidão\nDe volta ao monstro que me quer tragar\nTentando as pontes que construí quebrar\nMas eu me lembro do que a gente quis\nDaquele propósito que me fez feliz"
+            },
+            {
+              "index": 4,
+              "startTime": 112,
+              "endTime": 137,
+              "lines": [
+                "O Coletivo abrandava o meu monstro!",
+                "A solidão não tinha onde sentar!",
+                "Eu merecia sim esse encontro!",
+                "Nesse abraço eu pude descansar!",
+                "O Coletivo me deu o futuro!",
+                "A chama acesa no meio do escuro!"
+              ],
+              "text": "O Coletivo abrandava o meu monstro!\nA solidão não tinha onde sentar!\nEu merecia sim esse encontro!\nNesse abraço eu pude descansar!\nO Coletivo me deu o futuro!\nA chama acesa no meio do escuro!"
+            },
+            {
+              "index": 5,
+              "startTime": 137,
+              "endTime": 162,
+              "lines": [
+                "O Coletivo abrandava o meu monstro!",
+                "A solidão não tinha onde sentar!",
+                "Eu merecia sim esse encontro!",
+                "Nesse abraço eu pude descansar!",
+                "O Coletivo me deu o futuro!",
+                "A chama acesa no meio do escuro!"
+              ],
+              "text": "O Coletivo abrandava o meu monstro!\nA solidão não tinha onde sentar!\nEu merecia sim esse encontro!\nNesse abraço eu pude descansar!\nO Coletivo me deu o futuro!\nA chama acesa no meio do escuro!"
+            },
+            {
+              "index": 6,
+              "startTime": 162,
+              "endTime": 170.4,
+              "lines": [
+                "(O Coletivo... sempre vivo...)",
+                "A chama não se apaga. Não mesmo!"
+              ],
+              "text": "(O Coletivo... sempre vivo...)\nA chama não se apaga. Não mesmo!"
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "numberStr": "09",
+          "slug": "09-isso-e-um-tunel",
+          "title": "Isso é um Túnel",
+          "subtitle": null,
+          "fullTitle": "Isso é um Túnel",
+          "side": "B",
+          "style": "Samba-Canção de Câmara",
+          "bpm": 65,
+          "durationSeconds": 184.372,
+          "durationFormatted": "03:04",
+          "pauseAfterSeconds": 0,
+          "linerNote": "Violoncelo, piano e guarda firme na madrugada. Sem esconderijo e sem desespero — apenas o passo constante de quem atravessa.",
+          "audioUrl": "/lps/gravetos-no-escuro/audio/09-isso-e-um-tunel.mp3",
+          "rawFile": "raw/09-isso-e-um-tunel.mp3",
+          "masterWavFile": "master/09-isso-e-um-tunel.wav",
+          "masterFlacFile": "master/09-isso-e-um-tunel.flac",
+          "lyrics": "A tumba é o fim que o medo desenhou\nO túnel é o caminho que a gente ainda não completou\nOlho pra trás e vejo o rebelde cansado\nQue buscava no abismo um lugar pra ser olhado\nHoje o prumo é outro, a marcha é mais lenta\nA dor que era incêndio hoje é só essa cinza lenta\n\nIsso é um túnel, não é minha tumba\nA luz lá na frente não me faz perguntas\nEu sigo caminhando, o passo é firme e lento\nCarregando o amor que sopra contra o vento\nIsso é um túnel, estou de passagem\nA travessia é a minha coragem\n\nA esposa dorme, a mente num lugar distante\nEu fico de guarda, sentinela nesse instante\nNão sou mais o estranho, não sou mais o outsider\nA vida é o agora, o resto é só o slider\nDe um filme que eu não dirijo, mas escrevo o final\nAprendendo que o afeto é o meu único porto real\n\nIsso é um túnel, não é minha tumba\nA luz lá na frente não me faz perguntas\nEu sigo caminhando, o passo é firme e lento\nCarregando o amor que sopra contra o vento\nIsso é um túnel, estou de passagem\nA travessia é a minha coragem\n\nNão tem mais máscara, não tem mais esconderijo\nApenas o homem que encara o próprio sortilégio\nCom os pés no chão, o coração no que importa\nDeixando o escuro pra trás, abrindo a porta\nA tumba ficou pra trás...\nO túnel eu atravessei...\nEstou aqui.\nContinuo aqui.",
+          "stanzas": [
+            {
+              "index": 0,
+              "startTime": 12,
+              "endTime": 41.7,
+              "lines": [
+                "A tumba é o fim que o medo desenhou",
+                "O túnel é o caminho que a gente ainda não completou",
+                "Olho pra trás e vejo o rebelde cansado",
+                "Que buscava no abismo um lugar pra ser olhado",
+                "Hoje o prumo é outro, a marcha é mais lenta",
+                "A dor que era incêndio hoje é só essa cinza lenta"
+              ],
+              "text": "A tumba é o fim que o medo desenhou\nO túnel é o caminho que a gente ainda não completou\nOlho pra trás e vejo o rebelde cansado\nQue buscava no abismo um lugar pra ser olhado\nHoje o prumo é outro, a marcha é mais lenta\nA dor que era incêndio hoje é só essa cinza lenta"
+            },
+            {
+              "index": 1,
+              "startTime": 41.7,
+              "endTime": 71.4,
+              "lines": [
+                "Isso é um túnel, não é minha tumba",
+                "A luz lá na frente não me faz perguntas",
+                "Eu sigo caminhando, o passo é firme e lento",
+                "Carregando o amor que sopra contra o vento",
+                "Isso é um túnel, estou de passagem",
+                "A travessia é a minha coragem"
+              ],
+              "text": "Isso é um túnel, não é minha tumba\nA luz lá na frente não me faz perguntas\nEu sigo caminhando, o passo é firme e lento\nCarregando o amor que sopra contra o vento\nIsso é um túnel, estou de passagem\nA travessia é a minha coragem"
+            },
+            {
+              "index": 2,
+              "startTime": 71.4,
+              "endTime": 101.1,
+              "lines": [
+                "A esposa dorme, a mente num lugar distante",
+                "Eu fico de guarda, sentinela nesse instante",
+                "Não sou mais o estranho, não sou mais o outsider",
+                "A vida é o agora, o resto é só o slider",
+                "De um filme que eu não dirijo, mas escrevo o final",
+                "Aprendendo que o afeto é o meu único porto real"
+              ],
+              "text": "A esposa dorme, a mente num lugar distante\nEu fico de guarda, sentinela nesse instante\nNão sou mais o estranho, não sou mais o outsider\nA vida é o agora, o resto é só o slider\nDe um filme que eu não dirijo, mas escrevo o final\nAprendendo que o afeto é o meu único porto real"
+            },
+            {
+              "index": 3,
+              "startTime": 101.1,
+              "endTime": 130.8,
+              "lines": [
+                "Isso é um túnel, não é minha tumba",
+                "A luz lá na frente não me faz perguntas",
+                "Eu sigo caminhando, o passo é firme e lento",
+                "Carregando o amor que sopra contra o vento",
+                "Isso é um túnel, estou de passagem",
+                "A travessia é a minha coragem"
+              ],
+              "text": "Isso é um túnel, não é minha tumba\nA luz lá na frente não me faz perguntas\nEu sigo caminhando, o passo é firme e lento\nCarregando o amor que sopra contra o vento\nIsso é um túnel, estou de passagem\nA travessia é a minha coragem"
+            },
+            {
+              "index": 4,
+              "startTime": 130.8,
+              "endTime": 170.4,
+              "lines": [
+                "Não tem mais máscara, não tem mais esconderijo",
+                "Apenas o homem que encara o próprio sortilégio",
+                "Com os pés no chão, o coração no que importa",
+                "Deixando o escuro pra trás, abrindo a porta",
+                "A tumba ficou pra trás...",
+                "O túnel eu atravessei...",
+                "Estou aqui.",
+                "Continuo aqui."
+              ],
+              "text": "Não tem mais máscara, não tem mais esconderijo\nApenas o homem que encara o próprio sortilégio\nCom os pés no chão, o coração no que importa\nDeixando o escuro pra trás, abrindo a porta\nA tumba ficou pra trás...\nO túnel eu atravessei...\nEstou aqui.\nContinuo aqui."
+            }
+          ]
+        }
+      ],
+      "youtubeChapters": [
+        {
+          "trackNumber": "01",
+          "title": "Herança de Sal",
+          "side": "A",
+          "startSeconds": 0,
+          "timestamp": "00:00",
+          "line": "00:00 01. Herança de Sal"
+        },
+        {
+          "trackNumber": "02",
+          "title": "A Máscara Racha",
+          "side": "A",
+          "startSeconds": 179.07,
+          "timestamp": "02:59",
+          "line": "02:59 02. A Máscara Racha"
+        },
+        {
+          "trackNumber": "03",
+          "title": "O Intruso de Terno",
+          "side": "A",
+          "startSeconds": 358.92,
+          "timestamp": "05:59",
+          "line": "05:59 03. O Intruso de Terno"
+        },
+        {
+          "trackNumber": "04",
+          "title": "O Saldo Não Dá",
+          "side": "A",
+          "startSeconds": 513.78,
+          "timestamp": "08:34",
+          "line": "08:34 04. O Saldo Não Dá"
+        },
+        {
+          "trackNumber": "05",
+          "title": "Partiu Sem Sair do Lugar",
+          "side": "A",
+          "startSeconds": 695.14,
+          "timestamp": "11:35",
+          "line": "11:35 05. Partiu Sem Sair do Lugar"
+        },
+        {
+          "trackNumber": "06",
+          "title": "Âncora no Olhar",
+          "side": "B",
+          "startSeconds": 879.78,
+          "timestamp": "14:40",
+          "line": "14:40 06. Âncora no Olhar"
+        },
+        {
+          "trackNumber": "07",
+          "title": "A Ponte Que Não Quebra",
+          "side": "B",
+          "startSeconds": 1060.6,
+          "timestamp": "17:41",
+          "line": "17:41 07. A Ponte Que Não Quebra"
+        },
+        {
+          "trackNumber": "08",
+          "title": "O Nosso Altar",
+          "side": "B",
+          "startSeconds": 1235.36,
+          "timestamp": "20:35",
+          "line": "20:35 08. O Nosso Altar"
+        },
+        {
+          "trackNumber": "09",
+          "title": "Isso é um Túnel",
+          "side": "B",
+          "startSeconds": 1419.73,
+          "timestamp": "23:40",
+          "line": "23:40 09. Isso é um Túnel"
+        }
+      ]
+    }
+  ]
+}

@@ -39,7 +39,7 @@ echo "==> Capítulos do YouTube salvos em: $VIDEO_DIR/youtube_chapters.txt"
 echo ""
 
 if command -v ffmpeg >/dev/null 2>&1; then
-  echo "==> Renderizando vídeo 4K (3840x2160) com arte da capa e áudio concatenado..."
+  echo "==> Renderizando vídeo 4K (3840x2160) via ffmpeg..."
   ffmpeg -y -hide_banner \
     -loop 1 -framerate 2 -i "$COVER_IMG" \
     -f concat -safe 0 -i "$CONCAT_FILE" \
@@ -50,6 +50,6 @@ if command -v ffmpeg >/dev/null 2>&1; then
     "$OUTPUT_MP4"
   echo "==> Vídeo 4K finalizado em: $OUTPUT_MP4"
 else
-  echo "[INFO] Para renderizar o arquivo .mp4 em 4K, instale o ffmpeg ('brew install ffmpeg') e execute:"
-  echo "       ./scripts/render-video.sh"
+  echo "==> Renderizando vídeo 4K (3840x2160) via Apple AVFoundation/VideoToolbox nativo..."
+  swift -module-cache-path /tmp/swift-module-cache scripts/render-video-native.swift
 fi

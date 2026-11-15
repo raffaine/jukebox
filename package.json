@@ -11,6 +11,7 @@
     "album:json": "node scripts/build-album-json.mjs",
     "album:cover": "./scripts/prepare-cover.sh",
     "album:booklet": "./scripts/build-booklet.sh",
+    "album:songbook": "node scripts/build-songbook.mjs",
     "album:master": "./scripts/master-audio.sh",
     "album:video": "./scripts/render-video.sh"
   },

@@ -14,12 +14,14 @@ const normalizedAlbum = {
   ...album,
   coverUrl: withBase(album.coverUrl),
   bookletPdfUrl: withBase(album.bookletPdfUrl),
+  songbookPdfUrl: album.songbookPdfUrl ? withBase(album.songbookPdfUrl) : withBase('/lps/gravetos-no-escuro/songbook-gravetos-no-escuro.pdf'),
   tracks: album.tracks.map((t) => ({
     ...t,
     audioUrl: withBase(t.audioUrl),
   })),
 };
 const initialTrack = normalizedAlbum.tracks[0];
+const initialSongbook = initialTrack.songbook;
 ---
 
 <div class="jukebox-shell" data-album-id={album.id}>
@@ -66,7 +68,22 @@ const initialTrack = normalizedAlbum.tracks[0];
           <line x1="12" y1="18" x2="12" y2="12"></line>
           <polyline points="9 15 12 18 15 15"></polyline>
         </svg>
-        <span>Encarte PDF (Anos 70)</span>
+        <span>Encarte PDF</span>
+      </a>
+
+      <a
+        href={normalizedAlbum.songbookPdfUrl}
+        target="_blank"
+        rel="noopener"
+        class="action-chip action-chip-songbook"
+        title="Abrir Songbook Oficial em PDF (Cifras, Harmonia e Bastidores)"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+        <span>Songbook PDF</span>
       </a>
     </div>
   </header>
@@ -288,6 +305,9 @@ const initialTrack = normalizedAlbum.tracks[0];
           <button type="button" class="booklet-tab active" data-tab-target="lyrics" id="tab-btn-lyrics">
             Letra & Crônica
           </button>
+          <button type="button" class="booklet-tab" data-tab-target="songbook" id="tab-btn-songbook">
+            Songbook & Cifras
+          </button>
           <button type="button" class="booklet-tab" data-tab-target="gatefold" id="tab-btn-gatefold">
             Capa Interna & Contracapa
           </button>
@@ -356,6 +376,92 @@ const initialTrack = normalizedAlbum.tracks[0];
             <button type="button" class="btn-lyric-step" id="btn-lyric-prev">← Faixa Anterior</button>
             <span class="lyric-hint">Dica: Clique em qualquer estrofe para avançar o áudio para aquele trecho</span>
             <button type="button" class="btn-lyric-step" id="btn-lyric-next">Próxima Faixa →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAINEL NOVO: SONGBOOK, CIFRAS, ACORDES & BASTIDORES -->
+      <div class="tab-panel" id="panel-songbook" hidden>
+        <div class="songbook-scroll">
+          <!-- Cabeçalho do Songbook da Faixa -->
+          <div class="sb-header-card">
+            <div class="sb-title-row">
+              <div>
+                <span class="section-eyebrow" id="sb-eyebrow">
+                  POR TRÁS DA CORTINA · FAIXA {initialTrack.numberStr} (LADO {initialTrack.side})
+                </span>
+                <h2 class="sb-track-title" id="sb-track-title">{initialTrack.fullTitle}</h2>
+              </div>
+
+              <!-- Transpositor Interativo de Tom -->
+              <div class="sb-transposer-box">
+                <span class="sb-trans-label">Transpor Cifra:</span>
+                <div class="sb-trans-buttons">
+                  <button type="button" class="sb-trans-btn" id="btn-trans-down" title="Descer 1 semitom (-1)">-1</button>
+                  <span class="sb-trans-readout" id="sb-trans-readout">0 st (Original)</span>
+                  <button type="button" class="sb-trans-btn" id="btn-trans-up" title="Subir 1 semitom (+1)">+1</button>
+                  <button type="button" class="sb-trans-btn sb-trans-easy" id="btn-trans-easy" title="Aplicar sugestão de Violão Fácil / Capotraste">
+                    Violão Fácil
+                  </button>
+                  <button type="button" class="sb-trans-btn" id="btn-trans-reset" title="Voltar ao tom original da gravação">
+                    Original
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="sb-meta-pills">
+              <div class="sb-pill">
+                <span class="sb-pill-k">TOM DA GRAVAÇÃO:</span>
+                <strong id="sb-key-badge">{initialSongbook?.key}</strong>
+              </div>
+              <div class="sb-pill">
+                <span class="sb-pill-k">COMPASSO / PULSO:</span>
+                <strong id="sb-time-badge">{initialSongbook?.timeSignature} · {initialTrack.bpm} BPM</strong>
+              </div>
+              <div class="sb-pill sb-pill-capo">
+                <span class="sb-pill-k">DICA DE VIOLÃO:</span>
+                <strong id="sb-capo-badge">{initialSongbook?.capoHint}</strong>
+              </div>
+            </div>
+
+            <!-- Análise Harmônica ("Por Trás da Cortina") -->
+            <div class="sb-curtain-box">
+              <div class="sb-curtain-title">
+                <span>Bastidores da Harmonia & Arranjo</span>
+                <a href={normalizedAlbum.songbookPdfUrl} target="_blank" rel="noopener" class="sb-pdf-mini-link">
+                  ↓ Baixar Songbook Completo (PDF)
+                </a>
+              </div>
+              <p id="sb-curtain-text">{initialSongbook?.behindTheCurtain}</p>
+              <p class="sb-feel-line">
+                <strong>Levada & Instrumentação:</strong> <span id="sb-feel-text">{initialSongbook?.feel}</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Grid Rítmico (Groove / Levada) + Dicionário Visual de Acordes (SVG) -->
+          <div class="sb-mid-grid">
+            <div class="sb-groove-card">
+              <span class="section-eyebrow" id="sb-groove-label">{initialSongbook?.groovePattern.label}</span>
+              <div class="groove-matrix" id="sb-groove-matrix"></div>
+            </div>
+
+            <div class="sb-chords-card">
+              <div class="sb-chords-head">
+                <span class="section-eyebrow">DICIONÁRIO DE VOICINGS (CLIQUE PARA OUVIR O ACORDE)</span>
+              </div>
+              <div class="chord-diagrams-grid" id="sb-chord-diagrams"></div>
+            </div>
+          </div>
+
+          <!-- Folha de Cifra Completa sobre a Letra -->
+          <div class="sb-sheet-card">
+            <div class="sb-sheet-header">
+              <span class="section-eyebrow">CIFRA COMPLETA & ESTRUTURA DA FAIXA</span>
+              <span class="sb-sheet-hint">Os acordes em destaque acompanham a transposição selecionada acima</span>
+            </div>
+            <div class="sb-chord-sheet" id="sb-chord-sheet"></div>
           </div>
         </div>
       </div>
@@ -592,6 +698,263 @@ const initialTrack = normalizedAlbum.tracks[0];
     let trackFilter: 'side' | 'all' = 'side';
     let lyricFontScale = 1;
     let flipTimeoutId: number | null = null;
+    let currentTranspose = 0;
+
+    // Songbook DOM Elements
+    const sbEyebrow = document.getElementById('sb-eyebrow') as HTMLElement;
+    const sbTrackTitle = document.getElementById('sb-track-title') as HTMLElement;
+    const sbKeyBadge = document.getElementById('sb-key-badge') as HTMLElement;
+    const sbTimeBadge = document.getElementById('sb-time-badge') as HTMLElement;
+    const sbCapoBadge = document.getElementById('sb-capo-badge') as HTMLElement;
+    const sbCurtainText = document.getElementById('sb-curtain-text') as HTMLElement;
+    const sbFeelText = document.getElementById('sb-feel-text') as HTMLElement;
+    const sbGrooveLabel = document.getElementById('sb-groove-label') as HTMLElement;
+    const sbGrooveMatrix = document.getElementById('sb-groove-matrix') as HTMLElement;
+    const sbChordDiagrams = document.getElementById('sb-chord-diagrams') as HTMLElement;
+    const sbChordSheet = document.getElementById('sb-chord-sheet') as HTMLElement;
+    const sbTransReadout = document.getElementById('sb-trans-readout') as HTMLElement;
+
+    const NOTES_SHARP = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    const NOTE_TO_INDEX: Record<string, number> = {
+      C: 0, 'B#': 0,
+      'C#': 1, Db: 1,
+      D: 2,
+      'D#': 3, Eb: 3,
+      E: 4, Fb: 4,
+      F: 5, 'E#': 5,
+      'F#': 6, Gb: 6,
+      G: 7,
+      'G#': 8, Ab: 8,
+      A: 9,
+      'A#': 10, Bb: 10,
+      B: 11, Cb: 11,
+    };
+
+    function transposeChordToken(token: string, semitones: number): string {
+      if (semitones === 0) return token;
+      return token.replace(/^([A-G][#b]?)(.*)$/, (_, root, suffix) => {
+        const idx = NOTE_TO_INDEX[root];
+        if (idx === undefined) return token;
+        const nextIdx = (idx + semitones + 120) % 12;
+        const nextRoot = NOTES_SHARP[nextIdx];
+        // Also transpose slash bass if present
+        const updatedSuffix = suffix.replace(/\/([A-G][#b]?)$/, (__, bass) => {
+          const bIdx = NOTE_TO_INDEX[bass];
+          if (bIdx === undefined) return __;
+          return '/' + NOTES_SHARP[(bIdx + semitones + 120) % 12];
+        });
+        return nextRoot + updatedSuffix;
+      });
+    }
+
+    // Play a warm guitar-like arpeggio when user clicks a chord diagram
+    function strumChordPreview(chordName: string) {
+      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      if (!audioCtx) audioCtx = new AudioContextClass();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const match = chordName.match(/^([A-G][#b]?)(.*)$/);
+      if (!match) return;
+      const rootIdx = NOTE_TO_INDEX[match[1]] ?? 0;
+      const qual = match[2] || '';
+
+      // Build intervals (root, 3rd, 5th, 7th, 9th)
+      const isMinor = qual.startsWith('m') && !qual.startsWith('maj');
+      const isHalfDim = qual.includes('b5');
+      const isMaj7 = qual.includes('7M') || qual.includes('maj7');
+      const intervals = [
+        0,
+        isMinor ? 3 : 4,
+        isHalfDim ? 6 : 7,
+        isMaj7 ? 11 : 10,
+        14,
+      ];
+
+      const now = audioCtx.currentTime;
+      intervals.forEach((interval, i) => {
+        if (!audioCtx) return;
+        const midi = 48 + rootIdx + interval;
+        const freq = 440 * Math.pow(2, (midi - 69) / 12);
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.value = freq;
+
+        const start = now + i * 0.045;
+        gain.gain.setValueAtTime(0.001, start);
+        gain.gain.linearRampToValueAtTime(0.11, start + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0008, start + 1.35);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(start);
+        osc.stop(start + 1.4);
+      });
+    }
+
+    function createChordDiagramSVG(chordName: string, shape: any): string {
+      const frets: (number | string)[] = shape?.frets || ['x', 0, 2, 2, 1, 0];
+      const numericFrets = frets.filter((f): f is number => typeof f === 'number' && f > 0);
+      const minFret = numericFrets.length > 0 ? Math.min(...numericFrets) : 1;
+      const maxFret = numericFrets.length > 0 ? Math.max(...numericFrets) : 4;
+      const baseFret = maxFret <= 4 ? 1 : minFret;
+
+      const width = 110;
+      const height = 128;
+      const padLeft = 22;
+      const padTop = 26;
+      const gridW = 70;
+      const gridH = 80;
+      const stringSpacing = gridW / 5;
+      const fretSpacing = gridH / 4;
+
+      let svg = `<svg viewBox="0 0 ${width} ${height}" width="104" height="122" class="chord-svg">`;
+      // Nut or base fret label
+      if (baseFret === 1) {
+        svg += `<line x1="${padLeft}" y1="${padTop}" x2="${padLeft + gridW}" y2="${padTop}" stroke="#e6b87d" stroke-width="3.5" />`;
+      } else {
+        svg += `<text x="6" y="${padTop + fretSpacing * 0.7}" fill="#e6b87d" font-size="10" font-family="monospace">${baseFret}ª</text>`;
+      }
+
+      // Fret lines
+      for (let f = 0; f <= 4; f++) {
+        const y = padTop + f * fretSpacing;
+        svg += `<line x1="${padLeft}" y1="${y}" x2="${padLeft + gridW}" y2="${y}" stroke="rgba(217,155,82,0.35)" stroke-width="1" />`;
+      }
+
+      // String lines
+      for (let s = 0; s < 6; s++) {
+        const x = padLeft + s * stringSpacing;
+        svg += `<line x1="${x}" y1="${padTop}" x2="${x}" y2="${padTop + gridH}" stroke="rgba(243,231,214,0.45)" stroke-width="${s < 3 ? 1.4 : 1}" />`;
+      }
+
+      // Dots and open/muted markers
+      frets.forEach((f, s) => {
+        const x = padLeft + s * stringSpacing;
+        if (f === 'x' || f === 'X') {
+          svg += `<text x="${x}" y="${padTop - 7}" text-anchor="middle" fill="#a8947e" font-size="10" font-family="monospace">×</text>`;
+        } else if (f === 0) {
+          svg += `<circle cx="${x}" cy="${padTop - 10}" r="3.5" fill="none" stroke="#e6b87d" stroke-width="1.4" />`;
+        } else if (typeof f === 'number' && f > 0) {
+          const relFret = f - baseFret + 1;
+          const cy = padTop + (relFret - 0.5) * fretSpacing;
+          svg += `<circle cx="${x}" cy="${cy}" r="5.5" fill="#d99b52" />`;
+        }
+      });
+
+      svg += `</svg>`;
+      return svg;
+    }
+
+    function renderSongbookForTrack(track: any) {
+      const sb = track.songbook;
+      if (!sb || !sbEyebrow) return;
+
+      sbEyebrow.textContent = `POR TRÁS DA CORTINA · FAIXA ${track.numberStr} (LADO ${track.side})`;
+      sbTrackTitle.textContent = track.fullTitle;
+      sbKeyBadge.textContent =
+        currentTranspose === 0
+          ? sb.key
+          : `${transposeChordToken(sb.key.split(' ')[0], currentTranspose)} (${currentTranspose > 0 ? '+' : ''}${currentTranspose} st)`;
+      sbTimeBadge.textContent = `${sb.timeSignature} · ${track.bpm} BPM`;
+      sbCapoBadge.textContent = sb.capoHint;
+      sbCurtainText.textContent = sb.behindTheCurtain;
+      sbFeelText.textContent = sb.feel;
+      sbTransReadout.textContent =
+        currentTranspose === 0
+          ? '0 st (Original)'
+          : `${currentTranspose > 0 ? '+' : ''}${currentTranspose} semitom`;
+
+      // Render Groove Matrix
+      if (sb.groovePattern && sbGrooveMatrix) {
+        sbGrooveLabel.textContent = sb.groovePattern.label;
+        const subs: string[] = sb.groovePattern.subdivisions;
+        let html = `<div class="groove-row groove-head"><span class="groove-voice-name">Pulso</span>`;
+        subs.forEach((sub) => {
+          html += `<span class="groove-cell groove-sub">${sub}</span>`;
+        });
+        html += `</div>`;
+
+        sb.groovePattern.voices.forEach((v: any) => {
+          html += `<div class="groove-row"><span class="groove-voice-name">${v.name}</span>`;
+          v.hits.forEach((hit: number) => {
+            html += `<span class="groove-cell ${hit ? 'hit' : ''}"><i></i></span>`;
+          });
+          html += `</div>`;
+        });
+        sbGrooveMatrix.innerHTML = html;
+      }
+
+      // Render Chord Diagrams
+      if (sbChordDiagrams) {
+        sbChordDiagrams.innerHTML = '';
+        const shapesDict = album.chordShapes || {};
+        sb.chordsUsed.forEach((origChord: string) => {
+          const displayedChord = transposeChordToken(origChord, currentTranspose);
+          const shape = shapesDict[displayedChord] || shapesDict[origChord] || null;
+          const card = document.createElement('button');
+          card.type = 'button';
+          card.className = 'chord-diagram-card';
+          card.title = `Clique para ouvir o acorde ${displayedChord}`;
+          card.innerHTML = `
+            <strong class="chord-card-name">${displayedChord}</strong>
+            ${createChordDiagramSVG(displayedChord, shape)}
+          `;
+          card.addEventListener('click', () => strumChordPreview(displayedChord));
+          sbChordDiagrams.appendChild(card);
+        });
+      }
+
+      // Render Chord Sheet with transposition
+      if (sbChordSheet && sb.chordSheet) {
+        const chordRegex = /^[A-G][#b]?(m|M|maj|dim|aug|sus|[0-9]|\(|b|#|-|\/|\))*$/;
+        const lines = sb.chordSheet.split('\n');
+        sbChordSheet.innerHTML = '';
+
+        lines.forEach((line: string) => {
+          const trimmed = line.trim();
+          const row = document.createElement('div');
+          if (!trimmed) {
+            row.className = 'sheet-spacer';
+            sbChordSheet.appendChild(row);
+            return;
+          }
+          if (trimmed.startsWith('[')) {
+            row.className = 'sheet-section-tag';
+            row.textContent = trimmed;
+            sbChordSheet.appendChild(row);
+            return;
+          }
+
+          const tokens = trimmed.split(/\s+/);
+          const isChordLine =
+            tokens.length > 0 &&
+            tokens.every(
+              (tok: string) =>
+                chordRegex.test(tok) ||
+                tok === '(Breque!)' ||
+                tok === '(Para' ||
+                tok === 'tudo!)' ||
+                tok === '(deixar' ||
+                tok === 'soar)' ||
+                tok === '->'
+            );
+
+          if (isChordLine) {
+            row.className = 'sheet-chord-line';
+            // Transpose each chord while preserving spacing
+            const transposedLine = line.replace(/([A-G][#b]?(?:m|M|maj|dim|aug|sus|[0-9]|\(|b|#|-|\/|\))*)/g, (m) =>
+              transposeChordToken(m, currentTranspose)
+            );
+            row.textContent = transposedLine;
+          } else {
+            row.className = 'sheet-lyric-line';
+            row.textContent = line;
+          }
+          sbChordSheet.appendChild(row);
+        });
+      }
+    }
 
     // DOM Elements
     const audio = document.getElementById('jukebox-audio') as HTMLAudioElement;
@@ -810,6 +1173,7 @@ const initialTrack = normalizedAlbum.tracks[0];
       timeTotal.textContent = track.durationFormatted;
 
       renderLyricsForTrack(track);
+      renderSongbookForTrack(track);
       updateTonearmAngle(0);
 
       if (autoPlay) {
@@ -1027,14 +1391,34 @@ const initialTrack = normalizedAlbum.tracks[0];
       modeSleeveBtn?.classList.toggle('active', !isPlatter);
     });
 
-    // Right Column Tabs (Letra / Capa Interna / Estúdio)
+    // Right Column Tabs (Letra / Songbook / Capa Interna / Estúdio)
     const tabBtns = Array.from(document.querySelectorAll('.booklet-tab'));
     const panels: Record<string, HTMLElement | null> = {
       lyrics: document.getElementById('panel-lyrics'),
+      songbook: document.getElementById('panel-songbook'),
       gatefold: document.getElementById('panel-gatefold'),
       studio: document.getElementById('panel-studio'),
     };
     const lyricsToolbar = document.getElementById('lyrics-toolbar');
+
+    // Transposer Buttons
+    document.getElementById('btn-trans-down')?.addEventListener('click', () => {
+      currentTranspose = ((currentTranspose - 1 + 18) % 12) - 6;
+      renderSongbookForTrack(album.tracks[currentTrackIdx]);
+    });
+    document.getElementById('btn-trans-up')?.addEventListener('click', () => {
+      currentTranspose = ((currentTranspose + 1 + 18) % 12) - 6;
+      renderSongbookForTrack(album.tracks[currentTrackIdx]);
+    });
+    document.getElementById('btn-trans-easy')?.addEventListener('click', () => {
+      const sb = album.tracks[currentTrackIdx]?.songbook;
+      currentTranspose = sb?.easyTransposeSemitones ?? 0;
+      renderSongbookForTrack(album.tracks[currentTrackIdx]);
+    });
+    document.getElementById('btn-trans-reset')?.addEventListener('click', () => {
+      currentTranspose = 0;
+      renderSongbookForTrack(album.tracks[currentTrackIdx]);
+    });
 
     tabBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -1116,8 +1500,9 @@ const initialTrack = normalizedAlbum.tracks[0];
       }
     });
 
-    // Initialize filter for Side A
+    // Initialize filter for Side A and render initial Songbook
     applyTrackFilter();
+    renderSongbookForTrack(album.tracks[0]);
   }
 </script>
 
@@ -1262,6 +1647,12 @@ const initialTrack = normalizedAlbum.tracks[0];
     background: linear-gradient(135deg, rgba(158, 67, 50, 0.45), rgba(217, 155, 82, 0.25));
     border-color: rgba(217, 155, 82, 0.45);
     color: var(--accent-warm);
+  }
+
+  .action-chip-songbook {
+    background: linear-gradient(135deg, rgba(45, 90, 76, 0.5), rgba(217, 155, 82, 0.2));
+    border-color: rgba(217, 155, 82, 0.42);
+    color: #f3e7d6;
   }
 
   .led-indicator {
@@ -2230,10 +2621,337 @@ const initialTrack = normalizedAlbum.tracks[0];
     color: var(--text-muted);
   }
 
-  /* GATEFOLD & STUDIO PANELS */
+  /* GATEFOLD, SONGBOOK & STUDIO PANELS */
   .gatefold-scroll,
-  .studio-scroll {
-    padding: 1.6rem 1.75rem;
+  .studio-scroll,
+  .songbook-scroll {
+    padding: 1.5rem 1.75rem;
+    max-height: 700px;
+    overflow-y: auto;
+  }
+
+  .sb-header-card {
+    background: rgba(20, 15, 11, 0.65);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .sb-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.9rem;
+  }
+
+  .sb-track-title {
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    color: var(--text-main);
+  }
+
+  .sb-transposer-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.3rem;
+  }
+
+  .sb-trans-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  .sb-trans-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .sb-trans-btn {
+    background: rgba(45, 33, 24, 0.85);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .sb-trans-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent-warm);
+  }
+
+  .sb-trans-easy {
+    background: rgba(45, 90, 76, 0.45);
+    border-color: rgba(93, 179, 152, 0.45);
+    color: #c9f2e4;
+  }
+
+  .sb-trans-readout {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--accent-warm);
+    padding: 0 0.35rem;
+    min-width: 96px;
+    text-align: center;
+  }
+
+  .sb-meta-pills {
+    display: flex;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .sb-pill {
+    background: rgba(38, 28, 20, 0.75);
+    border: 1px solid var(--border-subtle);
+    padding: 0.42rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .sb-pill-k {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    color: var(--text-muted);
+  }
+
+  .sb-pill strong {
+    color: var(--accent-warm);
+    font-family: var(--font-mono);
+  }
+
+  .sb-curtain-box {
+    background: rgba(243, 234, 216, 0.05);
+    border-left: 3px solid var(--accent);
+    padding: 0.85rem 1.1rem;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .sb-curtain-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.45rem;
+  }
+
+  .sb-pdf-mini-link {
+    color: var(--accent-warm);
+    text-decoration: none;
+    background: rgba(217, 155, 82, 0.15);
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .sb-curtain-box p {
+    font-size: 0.88rem;
+    line-height: 1.58;
+    color: var(--text-secondary);
+  }
+
+  .sb-feel-line {
+    margin-top: 0.5rem;
+    font-size: 0.82rem !important;
+    color: var(--text-muted) !important;
+  }
+
+  .sb-feel-line strong {
+    color: var(--accent-warm);
+  }
+
+  .sb-mid-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 1rem;
+    margin-bottom: 1.15rem;
+  }
+
+  @media (max-width: 920px) {
+    .sb-mid-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .sb-groove-card,
+  .sb-chords-card,
+  .sb-sheet-card {
+    background: rgba(20, 15, 11, 0.62);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.1rem;
+  }
+
+  :global(.groove-matrix) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.45rem;
+  }
+
+  :global(.groove-row) {
+    display: grid;
+    grid-template-columns: 120px repeat(8, 1fr);
+    align-items: center;
+    gap: 0.28rem;
+  }
+
+  :global(.groove-voice-name) {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  :global(.groove-cell) {
+    height: 26px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(217, 155, 82, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  :global(.groove-cell.groove-sub) {
+    background: transparent;
+    border: none;
+    height: 18px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  :global(.groove-cell.hit) {
+    background: rgba(217, 155, 82, 0.22);
+    border-color: var(--accent);
+  }
+
+  :global(.groove-cell.hit i) {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-warm);
+    box-shadow: 0 0 6px var(--accent);
+  }
+
+  .chord-diagrams-grid {
+    display: flex;
+    gap: 0.6rem;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    margin-top: 0.35rem;
+  }
+
+  :global(.chord-diagram-card) {
+    background: rgba(32, 23, 16, 0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 0.5rem 0.45rem 0.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: all 0.18s ease;
+    flex-shrink: 0;
+  }
+
+  :global(.chord-diagram-card:hover) {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    background: rgba(52, 37, 25, 0.9);
+  }
+
+  :global(.chord-card-name) {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent-warm);
+    margin-bottom: 0.15rem;
+  }
+
+  .sb-sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .sb-sheet-hint {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+  }
+
+  .sb-chord-sheet {
+    font-family: var(--font-mono);
+    background: #100c09;
+    border: 1px solid rgba(217, 155, 82, 0.16);
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    overflow-x: auto;
+  }
+
+  :global(.sheet-section-tag) {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.82rem;
+    margin-top: 0.9rem;
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.04em;
+  }
+
+  :global(.sheet-Section-tag:first-child) {
+    margin-top: 0;
+  }
+
+  :global(.sheet-chord-line) {
+    white-space: pre;
+    color: #e89b48;
+    font-weight: 700;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    margin-top: 0.25rem;
+  }
+
+  :global(.sheet-lyric-line) {
+    white-space: pre-wrap;
+    font-family: var(--font-sans);
+    color: var(--text-main);
+    font-size: 0.94rem;
+    line-height: 1.55;
+    margin-bottom: 0.15rem;
+  }
+
+  :global(.sheet-spacer) {
+    height: 0.65rem;
   }
 
   .section-eyebrow {

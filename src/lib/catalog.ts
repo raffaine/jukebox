@@ -9,6 +9,34 @@ export interface TimedStanza {
   text: string;
 }
 
+export interface GroovePattern {
+  label: string;
+  subdivisions: string[];
+  voices: {
+    name: string;
+    hits: number[];
+  }[];
+}
+
+export interface SongbookTrack {
+  key: string;
+  capoHint: string;
+  easyTransposeSemitones: number;
+  timeSignature: string;
+  feel: string;
+  groovePattern: GroovePattern;
+  behindTheCurtain: string;
+  chordsUsed: string[];
+  chordSheet: string;
+}
+
+export interface ChordShape {
+  frets: (number | string)[];
+  fingers: string[];
+  baseFret: number;
+  label: string;
+}
+
 export interface Track {
   number: number;
   numberStr: string;
@@ -29,6 +57,7 @@ export interface Track {
   masterFlacFile: string;
   lyrics: string;
   stanzas: TimedStanza[];
+  songbook?: SongbookTrack | null;
 }
 
 export interface SideInfo {
@@ -64,6 +93,8 @@ export interface Album {
   coverUrl: string;
   storeCoverFile: string;
   bookletPdfUrl: string;
+  songbookPdfUrl?: string;
+  chordShapes?: Record<string, ChordShape>;
   palette: {
     bgPrimary: string;
     bgSecondary: string;

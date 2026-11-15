@@ -11,6 +11,609 @@
   "coverUrl": "/lps/gravetos-no-escuro/cover.jpg",
   "storeCoverFile": "booklet/cover-3000x3000.jpg",
   "bookletPdfUrl": "/lps/gravetos-no-escuro/encarte-gravetos-no-escuro.pdf",
+  "songbookPdfUrl": "/lps/gravetos-no-escuro/songbook-gravetos-no-escuro.pdf",
+  "chordShapes": {
+    "G#m7": {
+      "frets": [
+        4,
+        "x",
+        4,
+        4,
+        4,
+        "x"
+      ],
+      "fingers": [
+        "1",
+        "",
+        "2",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "G#m7"
+    },
+    "C#m7": {
+      "frets": [
+        "x",
+        4,
+        6,
+        4,
+        5,
+        4
+      ],
+      "fingers": [
+        "",
+        "1",
+        "3",
+        "1",
+        "2",
+        "1"
+      ],
+      "baseFret": 1,
+      "label": "C#m7"
+    },
+    "F#7(13)": {
+      "frets": [
+        2,
+        "x",
+        2,
+        3,
+        4,
+        "x"
+      ],
+      "fingers": [
+        "1",
+        "",
+        "2",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "F#7(13)"
+    },
+    "B7M": {
+      "frets": [
+        "x",
+        2,
+        4,
+        3,
+        4,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "1",
+        "3",
+        "2",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "B7M"
+    },
+    "E7M": {
+      "frets": [
+        "x",
+        7,
+        9,
+        8,
+        9,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "1",
+        "3",
+        "2",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "E7M"
+    },
+    "A#m7(b5)": {
+      "frets": [
+        "x",
+        1,
+        2,
+        1,
+        2,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "1",
+        "3",
+        "2",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "A#m7(b5)"
+    },
+    "D#7(b9)": {
+      "frets": [
+        "x",
+        6,
+        5,
+        6,
+        5,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "2",
+        "1",
+        "3",
+        "1",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "D#7(b9)"
+    },
+    "D#7(#9)": {
+      "frets": [
+        "x",
+        6,
+        5,
+        6,
+        7,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "2",
+        "1",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "D#7(#9)"
+    },
+    "C#7(9)": {
+      "frets": [
+        "x",
+        4,
+        3,
+        4,
+        4,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "2",
+        "1",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "C#7(9)"
+    },
+    "G#7(b13)": {
+      "frets": [
+        4,
+        "x",
+        4,
+        5,
+        5,
+        "x"
+      ],
+      "fingers": [
+        "1",
+        "",
+        "2",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "G#7(b13)"
+    },
+    "F#m7": {
+      "frets": [
+        2,
+        "x",
+        2,
+        2,
+        2,
+        "x"
+      ],
+      "fingers": [
+        "1",
+        "",
+        "2",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "F#m7"
+    },
+    "B7(9)": {
+      "frets": [
+        "x",
+        2,
+        1,
+        2,
+        2,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "2",
+        "1",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "B7(9)"
+    },
+    "B7(13)": {
+      "frets": [
+        "x",
+        2,
+        "x",
+        2,
+        4,
+        4
+      ],
+      "fingers": [
+        "",
+        "1",
+        "",
+        "2",
+        "3",
+        "4"
+      ],
+      "baseFret": 1,
+      "label": "B7(13)"
+    },
+    "A7M": {
+      "frets": [
+        5,
+        "x",
+        6,
+        6,
+        5,
+        "x"
+      ],
+      "fingers": [
+        "1",
+        "",
+        "3",
+        "4",
+        "2",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "A7M"
+    },
+    "D#m7": {
+      "frets": [
+        "x",
+        6,
+        8,
+        6,
+        7,
+        6
+      ],
+      "fingers": [
+        "",
+        "1",
+        "3",
+        "1",
+        "2",
+        "1"
+      ],
+      "baseFret": 1,
+      "label": "D#m7"
+    },
+    "A#7(b9)": {
+      "frets": [
+        6,
+        "x",
+        6,
+        7,
+        6,
+        "x"
+      ],
+      "fingers": [
+        "1",
+        "",
+        "2",
+        "4",
+        "3",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "A#7(b9)"
+    },
+    "Bbm7": {
+      "frets": [
+        6,
+        "x",
+        6,
+        6,
+        6,
+        "x"
+      ],
+      "fingers": [
+        "1",
+        "",
+        "2",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "Bbm7"
+    },
+    "Ebm7": {
+      "frets": [
+        "x",
+        6,
+        8,
+        6,
+        7,
+        6
+      ],
+      "fingers": [
+        "",
+        "1",
+        "3",
+        "1",
+        "2",
+        "1"
+      ],
+      "baseFret": 1,
+      "label": "Ebm7"
+    },
+    "Ab7(13)": {
+      "frets": [
+        4,
+        "x",
+        4,
+        5,
+        6,
+        "x"
+      ],
+      "fingers": [
+        "1",
+        "",
+        "2",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "Ab7(13)"
+    },
+    "Db7M": {
+      "frets": [
+        "x",
+        4,
+        6,
+        5,
+        6,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "1",
+        "3",
+        "2",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "Db7M"
+    },
+    "F7(#9)": {
+      "frets": [
+        "x",
+        8,
+        7,
+        8,
+        9,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "2",
+        "1",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "F7(#9)"
+    },
+    "Cm7(b5)": {
+      "frets": [
+        "x",
+        3,
+        4,
+        3,
+        4,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "1",
+        "3",
+        "2",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "Cm7(b5)"
+    },
+    "Am7": {
+      "frets": [
+        "x",
+        0,
+        2,
+        0,
+        1,
+        0
+      ],
+      "fingers": [
+        "",
+        "",
+        "2",
+        "",
+        "1",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "Am7"
+    },
+    "Dm7": {
+      "frets": [
+        "x",
+        "x",
+        0,
+        2,
+        1,
+        1
+      ],
+      "fingers": [
+        "",
+        "",
+        "",
+        "2",
+        "1",
+        "1"
+      ],
+      "baseFret": 1,
+      "label": "Dm7"
+    },
+    "G7(13)": {
+      "frets": [
+        3,
+        "x",
+        3,
+        4,
+        5,
+        "x"
+      ],
+      "fingers": [
+        "1",
+        "",
+        "2",
+        "3",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "G7(13)"
+    },
+    "C7M": {
+      "frets": [
+        "x",
+        3,
+        2,
+        0,
+        0,
+        0
+      ],
+      "fingers": [
+        "",
+        "3",
+        "2",
+        "",
+        "",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "C7M"
+    },
+    "F7M": {
+      "frets": [
+        1,
+        "x",
+        2,
+        2,
+        1,
+        "x"
+      ],
+      "fingers": [
+        "1",
+        "",
+        "3",
+        "4",
+        "2",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "F7M"
+    },
+    "Bm7(b5)": {
+      "frets": [
+        "x",
+        2,
+        3,
+        2,
+        3,
+        "x"
+      ],
+      "fingers": [
+        "",
+        "1",
+        "3",
+        "2",
+        "4",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "Bm7(b5)"
+    },
+    "E7(b9)": {
+      "frets": [
+        0,
+        2,
+        0,
+        1,
+        0,
+        1
+      ],
+      "fingers": [
+        "",
+        "2",
+        "",
+        "1",
+        "",
+        "1"
+      ],
+      "baseFret": 1,
+      "label": "E7(b9)"
+    },
+    "Em7": {
+      "frets": [
+        0,
+        2,
+        2,
+        0,
+        3,
+        0
+      ],
+      "fingers": [
+        "",
+        "1",
+        "2",
+        "",
+        "3",
+        ""
+      ],
+      "baseFret": 1,
+      "label": "Em7"
+    }
+  },
   "palette": {
     "bgPrimary": "#110d0a",
     "bgSecondary": "#1c1510",
@@ -164,7 +767,66 @@
           ],
           "text": "Uma família sorri no meu lar\nA mesa está posta o beijo me acolhe\nMas ela se esconde no canto a espiar\nEsperando a hora em que a força me encolhe\nNão é desamor não é falta de fé\nÉ só que o vazio tem fome de mim\nDestrói minhas pontes me deixa sem pé\nE escreve em silêncio o meu próprio fim"
         }
-      ]
+      ],
+      "songbook": {
+        "key": "G#m",
+        "capoHint": "Capo na 4ª casa (tocar em Em) ou afinação 1/2 tom abaixo (Am)",
+        "easyTransposeSemitones": 1,
+        "timeSignature": "2/4 (Samba-Canção Lento)",
+        "feel": "Rubato intimista no violão de 7 cordas / nylon, com baixarias descendentes em semicolcheias.",
+        "groovePattern": {
+          "label": "Levada de Samba-Canção (2/4 — 68 BPM)",
+          "subdivisions": [
+            "1",
+            "e",
+            "&",
+            "a",
+            "2",
+            "e",
+            "&",
+            "a"
+          ],
+          "voices": [
+            {
+              "name": "Polegar (Baixo)",
+              "hits": [
+                1,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Puxada (Acorde)",
+              "hits": [
+                0,
+                1,
+                0,
+                1,
+                0,
+                0,
+                1,
+                0
+              ]
+            }
+          ]
+        },
+        "behindTheCurtain": "A faixa abre o disco em Sol Sustenido Menor (G#m), uma tonalidade historicamente associada ao lamento contido no violão brasileiro. O ciclo de quartas (G#m7 → C#m7 → F#7 → B7M) cria uma sensação de tentativa de saída para o relativo maior (Si Maior), mas a harmonia sempre é puxada de volta ao chão pelo II–V menor (A#m7(b5) → D#7(b9)), espelhando a letra onde \"nenhum afeto consegue secar\" o rio de sombra.",
+        "chordsUsed": [
+          "G#m7",
+          "C#m7",
+          "F#7(13)",
+          "B7M",
+          "E7M",
+          "A#m7(b5)",
+          "D#7(b9)"
+        ],
+        "chordSheet": "[Intro] G#m7  C#m7  A#m7(b5)  D#7(b9)  G#m7\n\n[Primeira Parte]\nG#m7                        C#m7\nNasci sozinho na beira da estrada\nD#7(b9)                     G#m7\nSem muita história nem fado pra rir\nG#m7                        C#m7\nA infância escassa me deu quase nada\nF#7(13)                     B7M\nE a dor foi a mestra pra me conduzir\nE7M                         A#m7(b5)\nFiquei sem meu mundo perdi meu norte\nD#7(b9)                     G#m7\nCanto baixinho o que a vida calou\nE7M                         A#m7(b5)\nCatando gravetos driblando a sorte\nD#7(b9)                     G#m7\nSou a exceção que o tempo esqueceu\n\n[Refrão]\n            C#m7                F#7(13)\nA solidão é herança sem fim\n            B7M                 E7M\nMora no fundo e não sai de mim\n            A#m7(b5)            D#7(b9)\nUm rio de sombra que quer me afogar\n            G#m7                G#7(b13)\nE nenhum afeto consegue secar\n            C#m7                D#7(b9)\nA canção do vazio que vem me cobrar\n            A#m7(b5)  D#7(b9)   G#m7\nO preço de nunca poder descansar\n\n[Segunda Parte]\nG#m7                        C#m7\nO mundo sorriu e me deu um lugar\nF#7(13)                     B7M\nUm novo carinho uma outra mãe\nE7M                         A#m7(b5)\nMas logo o destino voltou a roubar\nD#7(b9)                     G#m7\nA ponte que eu fiz para não naufragar\nG#m7                        C#m7\nE agora de novo a mesma canção\nF#7(13)                     B7M\nDeitar com o medo no escuro sem fim\nE7M                         A#m7(b5)\nO cansaço é o mastro dessa embarcação\nD#7(b9)                     G#m7\nE a lágrima o único sal para mim\n\n[Terceira Parte / Desfecho]\nG#m7                        C#m7\nUma família sorri no meu lar\nF#7(13)                     B7M\nA mesa está posta o beijo me acolhe\nE7M                         A#m7(b5)\nMas ela se esconde no canto a espiar\nD#7(b9)                     G#m7\nEsperando a hora em que a força me encolhe\nE7M                         C#m7\nNão é desamor não é falta de fé\nA#m7(b5)                    D#7(b9)\nÉ só que o vazio tem fome de mim\nC#m7                        D#7(b9)\nDestrói minhas pontes me deixa sem pé\nA#m7(b5)        D#7(b9)     G#m7\nE escreve em silêncio o meu próprio fim"
+      }
     },
     {
       "number": 2,
@@ -258,7 +920,77 @@
           ],
           "text": "O cansaço é real, mas o cansaço não me para não\nA solidão tá aqui, mas agora eu tenho o meu bando\nSamba-rock pesado pra espantar a escuridão\nE o monstro do vazio tá de longe só olhando"
         }
-      ]
+      ],
+      "songbook": {
+        "key": "G#m (Dórico)",
+        "capoHint": "Transpor +1 semitom para tocar em Am7 / D7(9) no violão",
+        "easyTransposeSemitones": 1,
+        "timeSignature": "4/4 (Funk Brasileiro & Samba-Rock)",
+        "feel": "Groove sincopado em 115 BPM com guitarra wah-wah no contratempo e ataque de metais no acorde D#7(#9).",
+        "groovePattern": {
+          "label": "Groove Samba-Rock / Funk (4/4 — 115 BPM)",
+          "subdivisions": [
+            "1",
+            "&",
+            "2",
+            "&",
+            "3",
+            "&",
+            "4",
+            "&"
+          ],
+          "voices": [
+            {
+              "name": "Guitarra Wah",
+              "hits": [
+                0,
+                1,
+                1,
+                0,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Caixa / Aro",
+              "hits": [
+                0,
+                0,
+                1,
+                0,
+                0,
+                1,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Baixo Groove",
+              "hits": [
+                1,
+                0,
+                0,
+                1,
+                1,
+                0,
+                1,
+                0
+              ]
+            }
+          ]
+        },
+        "behindTheCurtain": "Depois da introspecção da Faixa 01, a harmonia permanece em G#m, mas muda do modo Eólio para o modo Dórico (G#m7 ↔ C#7(9)). Esse vamp de dois acordes — marca registrada de Jorge Ben e Tim Maia nos anos 70 — injeta adrenalina imediata. No refrão, a queda cromática E7M → D#7(#9) (o famoso \"acorde Hendrix\" de dominante com nona aumentada) traduz a tensão da máscara rachando na madrugada.",
+        "chordsUsed": [
+          "G#m7",
+          "C#7(9)",
+          "E7M",
+          "D#7(#9)",
+          "B7M"
+        ],
+        "chordSheet": "[Intro / Riff Metais] G#m7  C#7(9)  G#m7  D#7(#9)\n\n[Primeira Parte]\nG#m7                              C#7(9)\nCheguei na cena feito estranho no ninho\nG#m7                              C#7(9)\nCom a rejeição batendo forte no peito\nG#m7                              C#7(9)\nVesti a capa de quem anda sozinho\nE7M                               D#7(#9)\nUm outsider com defeito no jeito\nG#m7                              C#7(9)\nEra a armadura pra esconder a ferida\nG#m7                              C#7(9)\nA bofetada que a vida me deu\nE7M                               C#m7\nCriei um personagem pra lida\nD#7(#9)                           G#m7\nE o verdadeiro 'eu' se escondeu\n\n[Refrão]\nG#m7                              C#7(9)\nMas a máscara racha quando a noite vem cobrando\nE7M                               D#7(#9)\nA solidão não dorme, ela fica só espreitando\nG#m7                              C#7(9)\nMudei o rumo, encontrei o meu lugar\nE7M               D#7(#9)         G#m7\nNesse bonde que me ensina a caminhar\n\n[Segunda Parte]\nG#m7                              C#7(9)\nFui queimar a juventude no fogo do escape\nG#m7                              C#7(9)\nBuscando anestesia pra não ver o estrago\nG#m7                              C#7(9)\nAbraçando o perigo, jogando no blefe\nE7M                               D#7(#9)\nOuvindo discursos que me punham de lado\nC#m7                              G#m7\nOlhava pra vitrine e o preço era alto demais\nC#m7                              G#m7\nAmizades rasas, amores de plástico, sem paz\nE7M                               C#m7\nErrei por imaturo, perdi conexões no caminho\nD#7(#9)\nMas era só o medo de morrer sozinho\n\n[Coda / Batuque Final]\nG#m7                              C#7(9)\nO cansaço é real, mas o cansaço não me para não\nE7M                               D#7(#9)\nA solidão tá aqui, mas agora eu tenho o meu bando\nG#m7                              C#7(9)\nSamba-rock pesado pra espantar a escuridão\nE7M               D#7(#9)         G#m7\nE o monstro do vazio tá de longe só olhando"
+      }
     },
     {
       "number": 3,
@@ -369,7 +1101,79 @@
           ],
           "text": "Cadeira tá vaga? Pois é, agora eu ocupo."
         }
-      ]
+      ],
+      "songbook": {
+        "key": "C#m",
+        "capoHint": "Capo na 4ª casa (tocar em Am) ou +1 semitom (Dm)",
+        "easyTransposeSemitones": -4,
+        "timeSignature": "2/4 (Samba de Breque)",
+        "feel": "Samba malandro em 100 BPM com paradas secas (breques) no G#7(b13) antes das frases faladas.",
+        "groovePattern": {
+          "label": "Levada Samba de Breque (2/4 — 100 BPM)",
+          "subdivisions": [
+            "1",
+            "e",
+            "&",
+            "a",
+            "2",
+            "e",
+            "&",
+            "a"
+          ],
+          "voices": [
+            {
+              "name": "Tamborim / Breque",
+              "hits": [
+                1,
+                0,
+                1,
+                1,
+                0,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Violão Sincopado",
+              "hits": [
+                0,
+                1,
+                0,
+                1,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Surdo Marcação",
+              "hits": [
+                1,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "behindTheCurtain": "Construída em Dó Sustenido Menor (C#m), esta faixa usa dominantes secundários em cadeia (C#7 → F#m7 → B7(9) → E7M → A7M → D#7(9) → G#7(b13)) para dar o ar teatral e irônico do Samba de Breque clássico de Moreira da Silva. Na última frase (\"Cadeira tá vaga? Pois é, agora eu ocupo\"), a banda inteira faz um breque seco no G#7(b13) e só resolve no C#m6/9 depois da fala.",
+        "chordsUsed": [
+          "C#m7",
+          "G#7(b13)",
+          "F#m7",
+          "B7(9)",
+          "E7M",
+          "A7M",
+          "D#7(b9)"
+        ],
+        "chordSheet": "[Intro] C#m7  D#7(b9)  G#7(b13)  C#m7  (Breque!)\n\n[Primeira Parte]\nC#m7                              G#7(b13)\nEntrei sem bater a porta tava encostada\nC#m7                              F#m7\nA mesa cheia de gente a alma bem guardada\nF#m7                              B7(9)\nComentei do vinho dei risada do azar\nE7M                               G#7(b13)\nNotei que ninguém nota quem não quer se ajustar\nC#m7                              G#7(b13)\nO garçom me olha o anfitrião não conhece\nF#m7                              B7(9)\nMas esse é o meu charme é assim que a vida floresce\nA7M                               G#7(b13)\nFingem que não veem mas eu tô no salão\nC#m7              G#7(b13)        C#m7\nO intruso de terno o dono da situação\n\n[Segunda Parte]\nC#m7                              G#7(b13)\nAponto o dedo pro destino ele me olha com raiva\nC#m7                              F#m7\nEu sou o erro do sistema a peça que se lava\nB7(9)                             E7M\nMas não sai a mancha eu sou o risco no cristal\nA7M                               G#7(b13)\nQuem nasceu pra exceção não se sente mal no carnaval\nF#m7                              C#m7\nSorrio o sorriso que todo mundo prefere\nD#7(b9)                           G#7(b13)\nEnquanto o meu cínico interior se diverte\nF#m7                              C#m7\nVendo a vida de vocês com esse medo de cair\nA7M                               G#7(b13)   (Breque!)\nEu já tô no chão meu amigo não tenho pra onde fugir\n\n[Refrão]\nC#m7                              F#m7\nÉ o dedo do meio pro que o mundo desenhou!\nB7(9)                             E7M\nEu sou o convidado que o dono não chamou!\nA7M                               F#m7\nPode fechar a porta eu entro pela janela!\nD#7(b9)                           G#7(b13)\nA vida é esse circo e eu sou a atração dela!\nC#m7                              F#m7\nEu sou a intriga a piada o caos!\nG#7(b13)                          C#m7\nDançando com o diabo sem pedir pros ancestrais!\n\n[Final — Breque Falado]\nG#7(b13) (Para tudo!)\n\"Cadeira tá vaga? Pois é, agora eu ocupo.\" -> C#m7"
+      }
     },
     {
       "number": 4,
@@ -461,7 +1265,79 @@
           ],
           "text": "Ninguém tem o preço\nNinguém tem o saldo\nSó a gente na rua sem o brilho\nA luz apaga"
         }
-      ]
+      ],
+      "songbook": {
+        "key": "G#m / B",
+        "capoHint": "Capo na 4ª casa (Em / G) ou transpor +1 semitom (Am / C)",
+        "easyTransposeSemitones": 1,
+        "timeSignature": "4/4 (Samba-Rock Melancólico)",
+        "feel": "Andamento médio-lento (90 BPM), guitarra limpa com chorus leve e piano elétrico Fender Rhodes.",
+        "groovePattern": {
+          "label": "Samba-Rock de Calçada (4/4 — 90 BPM)",
+          "subdivisions": [
+            "1",
+            "&",
+            "2",
+            "&",
+            "3",
+            "&",
+            "4",
+            "&"
+          ],
+          "voices": [
+            {
+              "name": "Rhodes / Violão",
+              "hits": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Chimbal / Aro",
+              "hits": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            },
+            {
+              "name": "Baixo Melódico",
+              "hits": [
+                1,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "behindTheCurtain": "Uma crônica urbana construída sobre a ambiguidade entre G#m7 e B7M. Nos versos, a harmonia caminha sobre o escuro da calçada (G#m7 → C#m7); quando o refrão menciona \"comprar esse azul\", a progressão abre momentaneamente para o brilho artificial da vitrine em B7M e E7M, mas logo esbarra no acorde meio-diminuto A#m7(b5) (\"o preço é alto, o banco não aprova\").",
+        "chordsUsed": [
+          "G#m7",
+          "C#m7",
+          "F#7(13)",
+          "B7M",
+          "E7M",
+          "A#m7(b5)",
+          "D#7(b9)"
+        ],
+        "chordSheet": "[Intro] G#m7  C#m7  F#7(13)  B7M  D#7(b9)\n\n[Primeira Parte]\nG#m7                        C#m7\nVitrine acesa na avenida principal\nF#7(13)                     B7M\nFelicidade exposta em preço irreal\nE7M                         A#m7(b5)\nTodo mundo sorri no manequim de gesso\nD#7(b9)                     G#m7\nEu passo na calçada e não sei o endereço\nG#m7                        C#m7\nMáscaras coladas com a pressa do dia\nF#7(13)                     B7M\nVendendo a alma por pura fantasia\nE7M                         A#m7(b5)\nOlho no espelho e o reflexo é de vidro\nD#7(b9)                     G#m7\nUm figurante tentando algum sentido\n\n[Refrão]\n            C#m7                F#7(13)\nE o saldo não dá pra comprar esse azul\n            B7M                 E7M\nO brilho da vitrine é um norte pro sul\n            C#m7                D#7(b9)\nA felicidade é produto de prateleira\n            G#m7                G#7(b13)\nE eu sou só o resto daquela fileira\n            C#m7                A#m7(b5)\nO preço é alto o banco não aprova\n            D#7(b9)             G#m7\nViver desse jeito é uma eterna prova\n\n[Coda — Fade Out]\nC#m7                  G#m7\nNinguém tem o preço, ninguém tem o saldo\nE7M                   D#7(b9)       G#m7\nSó a gente na rua sem o brilho... a luz apaga."
+      }
     },
     {
       "number": 5,
@@ -581,7 +1457,77 @@
           ],
           "text": "E assim eu sigo... no escuro do meu ser...\nCansado de lutar e cansado de sofrer...\nA solidão venceu... não há mais o que falar...\nSó resta esse vazio... pra me devorar."
         }
-      ]
+      ],
+      "songbook": {
+        "key": "D#m (Ebm)",
+        "capoHint": "Transpor +1 semitom para tocar em Em ou -1 semitom para Dm",
+        "easyTransposeSemitones": -1,
+        "timeSignature": "4/4 (Dark Samba-Rock / Lamento)",
+        "feel": "Pulso implacável de 80 BPM marcando os segundos como um relógio na parede; termina em 3.5s de silêncio absoluto.",
+        "groovePattern": {
+          "label": "Pulso \"Relógio na Parede\" (4/4 — 80 BPM)",
+          "subdivisions": [
+            "1",
+            "&",
+            "2",
+            "&",
+            "3",
+            "&",
+            "4",
+            "&"
+          ],
+          "voices": [
+            {
+              "name": "Aro (Relógio)",
+              "hits": [
+                1,
+                0,
+                1,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Guitarra Grave",
+              "hits": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Bumbo / Baixo",
+              "hits": [
+                1,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "behindTheCurtain": "O clímax dramático do Lado A desce uma quarta justa para Ré Sustenido Menor (D#m / Ebm), a tonalidade mais densa do disco. A progressão D#m7 → B7M → G#m7 → A#7(b9) funciona como uma engrenagem que gira sem sair do lugar. Após o último acorde seco de D#m7, os 3.5 segundos de silêncio absoluto não são apenas uma pausa técnica: fazem o ouvinte sentir o peso do quarto antes de levantar para virar o disco.",
+        "chordsUsed": [
+          "D#m7",
+          "B7M",
+          "G#m7",
+          "A#7(b9)",
+          "C#7(9)"
+        ],
+        "chordSheet": "[Intro — Pulso do Relógio] D#m7  B7M  G#m7  A#7(b9)\n\n[Primeira Parte]\nD#m7                              B7M\nO relógio na parede bate como um martelo\nG#m7                              A#7(b9)\nNesse quarto frio o silêncio é meu castelo\nD#m7                              B7M\nTudo que eu toco parece que se desfaz\nG#m7                              A#7(b9)\nMinha mãe se foi e o meu pai já não faz paz\nD#m7                              B7M\nAgora você deitada tão perto de mim\nG#m7                              A#7(b9)\nMas o teu olhar tá longe num abismo sem fim\nB7M                               G#m7\nTeu corpo tá aqui mas tua alma evaporou\nA#7(b9)                           D#m7\nE o vazio que eu tanto temia me alcançou\n\n[Refrão]\nD#m7                              B7M\n(Essa solidão!) que me puxa pro fundo!\nG#m7                              A#7(b9)\n(Tudo que eu amo!) eu destruo no mundo!\nD#m7                              B7M\nA minha esposa partiu sem sair do lugar!\nG#m7              A#7(b9)         D#m7\nE esse vazio maldito veio me devorar!\n\n[Final — Desacelerando no Escuro]\nD#m7                        B7M\nE assim eu sigo... no escuro do meu ser...\nG#m7                        A#7(b9)\nCansado de lutar e cansado de sofrer...\nB7M                         G#m7\nA solidão venceu... não há mais o que falar...\nA#7(b9)                     D#m7\nSó resta esse vazio... pra me devorar.\n[3.5 SEGUNDOS DE SILÊNCIO DRAMÁTICO — FIM DO LADO A]"
+      }
     },
     {
       "number": 6,
@@ -673,7 +1619,65 @@
           ],
           "text": "Meus filhos... o meu melhor amanhã\nA cura que a vida me deu"
         }
-      ]
+      ],
+      "songbook": {
+        "key": "C#m / E Maior",
+        "capoHint": "Capo na 4ª casa (tocar em Am / C) — sonoridade doce de violão acústico",
+        "easyTransposeSemitones": -4,
+        "timeSignature": "2/4 (Samba Acústico / MPB)",
+        "feel": "Toque macio de dedos no violão de nylon (75 BPM), abrindo claridade harmônica na virada para o Lado B.",
+        "groovePattern": {
+          "label": "Dedilhado Samba Acústico (2/4 — 75 BPM)",
+          "subdivisions": [
+            "1",
+            "e",
+            "&",
+            "a",
+            "2",
+            "e",
+            "&",
+            "a"
+          ],
+          "voices": [
+            {
+              "name": "Violão (Dedos)",
+              "hits": [
+                1,
+                0,
+                1,
+                1,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Baixo Cantabile",
+              "hits": [
+                1,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        "behindTheCurtain": "Quando a agulha pousa no Lado B, o violão começa em C#m7 (\"A solidão que eu carreguei na bagagem\"), mas já no terceiro compasso prepara o B7(9) para desaguar num luminoso Mi Maior com Sétima Maior (E7M) quando entram os filhos na letra. É a primeira vez no LP em que o refrão repousa estavelmente num acorde Maior (A7M → B7(9) → E7M), representando o abrigo encontrado no olhar.",
+        "chordsUsed": [
+          "C#m7",
+          "F#m7",
+          "B7(9)",
+          "E7M",
+          "A7M",
+          "G#7(b13)"
+        ],
+        "chordSheet": "[Intro — Agulha no Sulco do Lado B] C#m7  F#m7  B7(9)  E7M  G#7(b13)\n\n[Primeira Parte]\nC#m7                        F#m7\nA solidão que eu carreguei na bagagem\nB7(9)                       E7M\nHoje descansa ao ver vocês crescerem\nA7M                         F#m7\nO tempo corre e muda a paisagem\nG#7(b13)                    C#m7   B7(9)\nMas o amor não deixa a esperança morrer\n\n[Refrão — Abertura em Mi Maior]\nE7M                         A7M\nE se o futuro for sopro e incerteza\nF#m7                        B7(9)\nEu faço abrigo na força do olhar\nE7M                         A7M\nMeus filhos são a cura da tristeza\nF#m7            G#7(b13)    C#m7\nO porto seguro onde eu vou ancorar\n\n[Segunda Parte]\nC#m7                        F#m7\nTropeço e erro tentando ser ponte\nB7(9)                       E7M\nO medo às vezes me rouba a canção\nA7M                         F#m7\nMas vejo o sol que renasce no horizonte\nG#7(b13)                    C#m7   B7(9)\nE encontro a paz no bater do coração\n\n[Coda]\nA7M                         E7M\nMeus filhos... o meu melhor amanhã\nF#m7            B7(9)       E7M\nA cura que a vida me deu"
+      }
     },
     {
       "number": 7,
@@ -828,7 +1832,78 @@
           ],
           "text": "Cultivando todo dia... sem pressa.\nLuz do meu dia... meu porto seguro.\nO amanhã já chegou, meu amor."
         }
-      ]
+      ],
+      "songbook": {
+        "key": "E Maior / C#m",
+        "capoHint": "Tocar na posição original (E7M / C#m7) com corda Mi solta ressoando",
+        "easyTransposeSemitones": 0,
+        "timeSignature": "4/4 (Samba-Rock Soul Solar)",
+        "feel": "Balanço aberto em 100 BPM com metais quentes, baixo soul caminhando pelas terças e sextas.",
+        "groovePattern": {
+          "label": "Samba-Rock Soul Solar (4/4 — 100 BPM)",
+          "subdivisions": [
+            "1",
+            "&",
+            "2",
+            "&",
+            "3",
+            "&",
+            "4",
+            "&"
+          ],
+          "voices": [
+            {
+              "name": "Metais / Violão",
+              "hits": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Caixa / Pandeiro",
+              "hits": [
+                0,
+                1,
+                1,
+                0,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Baixo Soul",
+              "hits": [
+                1,
+                0,
+                0,
+                1,
+                1,
+                0,
+                1,
+                0
+              ]
+            }
+          ]
+        },
+        "behindTheCurtain": "A faixa mais solar do disco assume de vez a tonalidade de Mi Maior (E7M) em diálogo com C#m7. A progressão E7M → C#m7 → F#m7 → B7(13) traz a tradição do Samba-Soul carioca (Banda Black Rio, Cassiano). O acorde B7(13) com décima-terceira no topo cria aquele \"sorriso harmônico\" que sustenta o refrão (\"Luz do meu dia, cura essa dor\").",
+        "chordsUsed": [
+          "E7M",
+          "C#m7",
+          "F#m7",
+          "B7(13)",
+          "A7M",
+          "G#7(b13)"
+        ],
+        "chordSheet": "[Intro — Falada sobre o Groove]\nE7M  C#m7  F#m7  B7(13)\n\"Nesse balanço eu sigo cultivando o amanhã.\nOlha esses sorrisos bicho, é onde mora a minha cura.\"\n\n[Primeira Parte]\nE7M                         C#m7\nO sol bate na vidraça da sala\nF#m7                        B7(13)\nVarrendo a poeira de tanto esperar\nE7M                         C#m7\nPassos pequenos que quebram o silêncio\nF#m7                        B7(13)\nTrazendo o barulho que me faz cansar\nA7M                         G#m7   C#m7\nCultivo esse afeto no peito todo dia\nF#m7                        B7(13)\nMesmo sabendo que a dor não vai sarar\n\n[Pré-Refrão]\nC#m7                        F#m7\nTem tropeço no caminho eu sei bem\nB7(13)                      E7M\nO medo do amanhã às vezes me consome\nA7M                         F#m7\nMas quando o abraço me aperta no fim\nG#7(b13)                    B7(13)\nA solidão recua e até esquece o nome\n\n[Refrão]\nE7M                         C#m7\nLuz do meu dia cura essa dor\nF#m7                        B7(13)\nSopro de esperança no meu caminhar\nE7M                         C#m7\nEles são o rumo o meu novo calor\nF#m7            B7(13)      E7M\nA única ponte que não vai quebrar"
+      }
     },
     {
       "number": 8,
@@ -944,7 +2019,78 @@
           ],
           "text": "(O Coletivo... sempre vivo...)\nA chama não se apaga. Não mesmo!"
         }
-      ]
+      ],
+      "songbook": {
+        "key": "Bbm / Db Maior",
+        "capoHint": "Capo na 1ª casa (tocar em Am / C) — ótimo para puxar na roda de violão",
+        "easyTransposeSemitones": -1,
+        "timeSignature": "4/4 (Samba-Rock-Groove-Batuqueira)",
+        "feel": "Cozinha percussiva pesada em 102 BPM; coro coletivo respondendo junto com os metais.",
+        "groovePattern": {
+          "label": "Batuqueira de Cozinha (4/4 — 102 BPM)",
+          "subdivisions": [
+            "1",
+            "&",
+            "2",
+            "&",
+            "3",
+            "&",
+            "4",
+            "&"
+          ],
+          "voices": [
+            {
+              "name": "Repique / Palmas",
+              "hits": [
+                1,
+                0,
+                1,
+                1,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Violão Percussivo",
+              "hits": [
+                1,
+                1,
+                0,
+                1,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Surdo / Baixo",
+              "hits": [
+                1,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        "behindTheCurtain": "O tom de Si Bemol Menor (Bbm7) com abertura para Ré Bemol Maior (Db7M) favorece os instrumentos de sopro (sax tenor e trompete). A harmonia usa o giro clássico Bbm7 → Ebm7 → Ab7(13) → Db7M → F7(#9): quando entra o refrão (\"O Coletivo abrandava o meu monstro!\"), o baixo sobe para o Db7M enquanto o F7(#9) prepara a volta com força de roda de samba universitária.",
+        "chordsUsed": [
+          "Bbm7",
+          "Ebm7",
+          "Ab7(13)",
+          "Db7M",
+          "F7(#9)",
+          "Cm7(b5)"
+        ],
+        "chordSheet": "[Intro — Cozinha Pesada] Bbm7  Ebm7  Ab7(13)  Db7M  F7(#9)\n\n[Primeira Parte]\nBbm7                        Ebm7\nVivi a autonomia que o mundo me deu\nAb7(13)                     Db7M\nFora de casa o destino se ergueu\nCm7(b5)                     F7(#9)\nCuidando da vida sem ter onde fiar\nBbm7                        F7(#9)\nMas nunca sozinho pra me amedrontar\nBbm7                        Ebm7\nO alojamento era o nosso altar\nAb7(13)                     Db7M\nGente de todo e qualquer lugar\nCm7(b5)                     F7(#9)\nDividindo o pão a canção e a dor\nBbm7                        F7(#9)\nUm caos perfeito que me deu calor\n\n[Refrão — Coro Coletivo]\nBbm7                        Ebm7\nO Coletivo abrandava o meu monstro!\nAb7(13)                     Db7M\nA solidão não tinha onde sentar!\nCm7(b5)                     F7(#9)\nEu merecia sim esse encontro!\nBbm7                        F7(#9)\nNesse abraço eu pude descansar!\nBbm7                        Ebm7\nO Coletivo me deu o futuro!\nF7(#9)                      Bbm7\nA chama acesa no meio do escuro!\n\n[Segunda Parte]\nBbm7                        Ebm7\nMas a realidade é rainha e senhora\nAb7(13)                     Db7M\nO tempo do abrigo me botou pra fora\nCm7(b5)                     F7(#9)\nE o hiper-isolamento me pôs no porão\nBbm7                        F7(#9)\nAcorrentado nessa solidão\nEbm7                        Bbm7\nDe volta ao monstro que me quer tragar\nCm7(b5)                     F7(#9)\nTentando as pontes que construí quebrar\nEbm7                        Bbm7\nMas eu me lembro do que a gente quis\nCm7(b5)         F7(#9)      Bbm7\nDaquele propósito que me fez feliz"
+      }
     },
     {
       "number": 9,
@@ -1038,7 +2184,66 @@
           ],
           "text": "Não tem mais máscara, não tem mais esconderijo\nApenas o homem que encara o próprio sortilégio\nCom os pés no chão, o coração no que importa\nDeixando o escuro pra trás, abrindo a porta\nA tumba ficou pra trás...\nO túnel eu atravessei...\nEstou aqui.\nContinuo aqui."
         }
-      ]
+      ],
+      "songbook": {
+        "key": "G#m / E7M (Câmara)",
+        "capoHint": "Capo na 4ª casa (Em / C7M) ou transpor +1 semitom (Am / F7M)",
+        "easyTransposeSemitones": 1,
+        "timeSignature": "4/4 (Samba-Canção de Câmara — 65 BPM)",
+        "feel": "Andamento de marcha lenta e firme na madrugada; piano, violoncelo em nota pedal e violão de nylon.",
+        "groovePattern": {
+          "label": "Passo de Sentinela (4/4 Câmara — 65 BPM)",
+          "subdivisions": [
+            "1",
+            "&",
+            "2",
+            "&",
+            "3",
+            "&",
+            "4",
+            "&"
+          ],
+          "voices": [
+            {
+              "name": "Piano / Violão",
+              "hits": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Violoncelo (Arco)",
+              "hits": [
+                1,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "behindTheCurtain": "Para encerrar o LP, a música retorna ao território de G#m / C#m da Faixa 01, fechando o arco cíclico do álbum. Porém, em vez de resolver no desespero do acorde menor fechado, a progressão final caminha por acordes com sétima maior e nona (E7M → A7M → F#m7 → G#m7), terminando num acorde suspenso e sereno. O túnel não apaga a estrada, mas deixa a porta aberta.",
+        "chordsUsed": [
+          "G#m7",
+          "E7M",
+          "C#m7",
+          "A7M",
+          "F#m7",
+          "D#7(b9)",
+          "B7M"
+        ],
+        "chordSheet": "[Intro — Violoncelo & Piano] G#m7  E7M  C#m7  D#7(b9)\n\n[Primeira Parte]\nG#m7                              E7M\nA tumba é o fim que o medo desenhou\nC#m7                              D#7(b9)\nO túnel é o caminho que a gente ainda não completou\nG#m7                              E7M\nOlho pra trás e vejo o rebelde cansado\nC#m7                              F#7(13)\nQue buscava no abismo um lugar pra ser olhado\nB7M                               E7M\nHoje o prumo é outro, a marcha é mais lenta\nC#m7              D#7(b9)         G#m7\nA dor que era incêndio hoje é só essa cinza lenta\n\n[Refrão]\n            E7M                   B7M\nIsso é um túnel, não é minha tumba\n            C#m7                  G#m7\nA luz lá na frente não me faz perguntas\n            E7M                   B7M\nEu sigo caminhando, o passo é firme e lento\n            C#m7                  D#7(b9)\nCarregando o amor que sopra contra o vento\n            E7M                   C#m7\nIsso é um túnel, estou de passagem\n            D#7(b9)               G#m7\nA travessia é a minha coragem\n\n[Segunda Parte]\nG#m7                              E7M\nA esposa dorme, a mente num lugar distante\nC#m7                              D#7(b9)\nEu fico de guarda, sentinela nesse instante\nG#m7                              E7M\nNão sou mais o estranho, não sou mais o outsider\nC#m7                              F#7(13)\nA vida é o agora, o resto é só o slider\nB7M                               E7M\nDe um filme que eu não dirijo, mas escrevo o final\nC#m7              D#7(b9)         G#m7\nAprendendo que o afeto é o meu único porto real\n\n[Coda — Guarda Firme]\nE7M                               B7M\nNão tem mais máscara, não tem mais esconderijo\nC#m7                              G#m7\nApenas o homem que encara o próprio sortilégio\nE7M                               C#m7\nCom os pés no chão, o coração no que importa\nD#7(b9)                           E7M\nDeixando o escuro pra trás, abrindo a porta\nC#m7              D#7(b9)         B7M    E7M\nA tumba ficou pra trás... O túnel eu atravessei...\nG#m7 (deixar soar)\nEstou aqui. Continuo aqui."
+      }
     }
   ],
   "youtubeChapters": [

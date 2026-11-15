@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { CHORD_SHAPES, SONGBOOK_TRACKS } from './songbook-data.mjs';
 
 const ROOT = process.cwd();
 const LP_DIR = path.join(ROOT, 'lps', 'gravetos_escuro');
@@ -295,6 +296,7 @@ const tracks = tracksMeta.map((meta) => {
     masterFlacFile: `master/${meta.slug}.flac`,
     lyrics: rawLyrics,
     stanzas: timedStanzas,
+    songbook: SONGBOOK_TRACKS[meta.numberStr] || null,
   };
 });
 
@@ -314,6 +316,8 @@ const albumData = {
   coverUrl: '/lps/gravetos-no-escuro/cover.jpg',
   storeCoverFile: 'booklet/cover-3000x3000.jpg',
   bookletPdfUrl: '/lps/gravetos-no-escuro/encarte-gravetos-no-escuro.pdf',
+  songbookPdfUrl: '/lps/gravetos-no-escuro/songbook-gravetos-no-escuro.pdf',
+  chordShapes: CHORD_SHAPES,
   palette: {
     bgPrimary: '#110d0a',
     bgSecondary: '#1c1510',
